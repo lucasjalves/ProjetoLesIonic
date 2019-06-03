@@ -1,0 +1,38 @@
+<ion-header >
+    <ion-toolbar color="tertiary">
+      <ion-buttons slot="secondary">
+        <ion-menu-button ></ion-menu-button>
+      </ion-buttons>
+      <ion-title >
+        Meus cartões 
+      </ion-title>
+      <ion-buttons slot="primary">
+          <ion-button (click)="irParaCadastro()">
+              <ion-icon name="add"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+            <ion-list-header>
+                <ion-label>Cartões de crédito</ion-label>
+              </ion-list-header>
+            <ion-item-sliding  *ngFor="let cartao of cartoes">
+              <ion-item style="padding-bottom: 15px;">
+                <ion-label>{{cartao.bandeira}}</ion-label>
+                <ion-text>Final -- {{cartao.numero.substring(cartao.numero.length -4)}}</ion-text>
+              </ion-item>
+              <ion-item-options side="end">
+                <ion-item-option (click)="unread(item)">Unread</ion-item-option>
+              </ion-item-options>
+            </ion-item-sliding>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>

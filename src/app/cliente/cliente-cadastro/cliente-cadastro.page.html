@@ -1,0 +1,296 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Cadastre-se
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #f="ngForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-sm="12" size-md="12">
+          <ion-item>
+            <ion-label
+              position="floating"
+              color="{{
+                !cpfCnpj.valid && cpfCnpj.touched
+                  ? 'danger'
+                  : cpfCnpj.valid
+                  ? 'success'
+                  : ''
+              }}"
+              >CPF</ion-label
+            >
+            <ion-input
+              #cpfCnpj="ngModel"
+              [(ngModel)]="cliente.cpfCnpj"
+              maxlength="14"
+              [appMascara]="'000.000.000-00'"
+              name="cpfCnpj"
+              appCpf
+            ></ion-input>
+            <ion-icon
+              *ngIf="cpfCnpj.valid && cpfCnpj.touched"
+              ios="ios-checkmark-circle"
+              md="md-checkmark-circle"
+              color="success"
+              style="margin-bottom: -10px;"
+              slot="end"
+            ></ion-icon>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-left: 5%">
+        <ion-col size-sm="12" size-md="12">
+          <ion-text *ngIf="!cpfCnpj.valid && cpfCnpj.touched" color="danger"
+            >Verifique o preenchimento do campo</ion-text
+          >
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12" size-sm="12" size-md="12">
+          <ion-item>
+            <ion-label
+              position="floating"
+              color="{{
+                !nome.valid && nome.touched
+                  ? 'danger'
+                  : nome.valid
+                  ? 'success'
+                  : ''
+              }}"
+              >Nome</ion-label
+            >
+            <ion-input
+              [(ngModel)]="cliente.nome"
+              name="nome"
+              required
+              #nome="ngModel"
+            ></ion-input>
+            <ion-icon
+              *ngIf="nome.valid && nome.touched"
+              ios="ios-checkmark-circle"
+              md="md-checkmark-circle"
+              color="success"
+              style="margin-bottom: -10px;"
+              slot="end"
+            ></ion-icon>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-left: 5%">
+        <ion-col size-sm="12" size-md="12">
+          <ion-text *ngIf="!nome.valid && nome.touched" color="danger"
+            >Verifique o preenchimento do campo</ion-text
+          >
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: 20px;">
+        <ion-col size="12" size-sm="12" size-md="12">
+          <ion-item>
+            <ion-label
+              color="{{
+                !dtNascimento.valid && dtNascimento.touched
+                  ? 'danger'
+                  : dtNascimento.valid
+                  ? 'success'
+                  : ''
+              }}"
+              >Data Nascimento</ion-label
+            >
+            <ion-datetime
+              name="dtNascimento"
+              [(ngModel)]="cliente.dtNascimento"
+              min="{{ dataMinima }}"
+              max="{{ dataMax }}"
+              #dtNascimento="ngModel"
+              required
+              display-format="DD/MM/YYYY"
+            ></ion-datetime>
+            <ion-icon
+              *ngIf="dtNascimento.valid && dtNascimento.touched"
+              ios="ios-checkmark-circle"
+              md="md-checkmark-circle"
+              color="success"
+              slot="end"
+            ></ion-icon>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-left: 5%">
+        <ion-col size-sm="12" size-md="12">
+          <ion-text
+            *ngIf="!dtNascimento.valid && dtNascimento.touched"
+            color="danger"
+            >Verifique o preenchimento do campo</ion-text
+          >
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12" size-sm="12" size-md="12">
+          <ion-item>
+            <ion-label
+              position="floating"
+              color="{{
+                !email.valid && email.touched
+                  ? 'danger'
+                  : email.valid
+                  ? 'success'
+                  : ''
+              }}"
+              >E-mail</ion-label
+            >
+            <ion-input
+              #email="ngModel"
+              [(ngModel)]="cliente.email"
+              required
+              pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,}$"
+              maxlength="30"
+              type="email"
+              name="email"
+            ></ion-input>
+            <ion-icon
+              *ngIf="email.valid && email.touched"
+              ios="ios-checkmark-circle"
+              md="md-checkmark-circle"
+              color="success"
+              style="margin-bottom: -10px;"
+              slot="end"
+            ></ion-icon>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-left: 5%">
+        <ion-col size-sm="12" size-md="12">
+          <ion-text *ngIf="!email.valid && email.touched" color="danger"
+            >Verifique o preenchimento do campo</ion-text
+          >
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: 20px;">
+        <ion-col size="12" size-sm="12" size-md="12">
+          <ion-item>
+            <ion-label
+              color="{{
+                !genero.valid && genero.touched
+                  ? 'danger'
+                  : genero.valid
+                  ? 'success'
+                  : ''
+              }}"
+              >Gênero</ion-label
+            >
+            <ion-select
+              name="genero"
+              #genero="ngModel"
+              required
+              [(ngModel)]="cliente.genero"
+              placeholder="Selecione..."
+            >
+              <ion-select-option value="M">Masculino</ion-select-option>
+              <ion-select-option value="F">Feminino</ion-select-option>
+            </ion-select>
+            <ion-icon
+              *ngIf="genero.valid && genero.touched"
+              ios="ios-checkmark-circle"
+              md="md-checkmark-circle"
+              color="success"
+              slot="end"
+            ></ion-icon>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12" size-sm="12" size-md="12">
+          <ion-item>
+            <ion-label
+              position="floating"
+              color="{{
+                !username.valid && username.touched
+                  ? 'danger'
+                  : username.valid
+                  ? 'success'
+                  : ''
+              }}"
+              >Username</ion-label
+            >
+            <ion-input
+              #username="ngModel"
+              [(ngModel)]="cliente.username"
+              required
+              pattern="^\S+$"
+              maxlength="30"
+              name="username"
+            ></ion-input>
+            <ion-icon
+              *ngIf="username.valid && username.touched"
+              ios="ios-checkmark-circle"
+              md="md-checkmark-circle"
+              color="success"
+              style="margin-bottom: -10px;"
+              slot="end"
+            ></ion-icon>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-left: 5%">
+        <ion-col size-sm="12" size-md="12">
+          <ion-text *ngIf="!username.valid && username.touched" color="danger"
+            >Verifique o preenchimento do campo</ion-text
+          >
+        </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col size="12" size-sm="12" size-md="12">
+            <ion-item>
+              <ion-label
+                position="floating"
+                color="{{
+                  !senha.valid && senha.touched
+                    ? 'danger'
+                    : senha.valid
+                    ? 'success'
+                    : ''
+                }}"
+                >Senha</ion-label
+              >
+              <ion-input
+                #senha="ngModel"
+                [(ngModel)]="cliente.senha"
+                required
+                maxlength="30"
+                minlength="7"
+                name="senha"
+                type="password"
+              ></ion-input>
+              <ion-icon
+                *ngIf="senha.valid && senha.touched"
+                ios="ios-checkmark-circle"
+                md="md-checkmark-circle"
+                color="success"
+                style="margin-bottom: -10px;"
+                slot="end"
+              ></ion-icon>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-left: 5%">
+          <ion-col size-sm="12" size-md="12">
+            <ion-text *ngIf="!senha.valid && senha.touched" color="danger"
+              >Verifique o preenchimento do campo</ion-text
+            >
+          </ion-col>
+        </ion-row>      
+        <ion-row>
+          <ion-col size="12" size-md="12" size-sm="12">
+              <ion-button expand="block" (click)="cadastrar()" color="tertiary" disabled='{{!f.valid}}'>Cadastrar</ion-button>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

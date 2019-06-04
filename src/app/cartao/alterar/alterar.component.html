@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="secondary">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Cadastrar Cartão
+    </ion-title>
+      <ion-buttons slot="primary">
+        <ion-button (click)="deletar()"> 
+            <ion-icon name="trash"></ion-icon>
+        </ion-button>
+    </ion-buttons>    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ <app-form-cartao [cartao]="cartao" [tituloBotao]="'Alterar'" [funcao]="funcao"></app-form-cartao>
+</ion-content>

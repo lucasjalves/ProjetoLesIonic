@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 })
 export class ModalHelper {
 
-    async mostrarModal(alertController: AlertController, titulo: string, msg: string, resultado?: Resultado<any>) {
+    async mostrarModal(alertController: AlertController, titulo: string, msg: string, resultado?: Resultado<any>, funcao?: () => void) {
         if (resultado === undefined || resultado === null) {
             return alertController.create({
                 header: titulo,
@@ -19,7 +19,12 @@ export class ModalHelper {
             return alertController.create({
                 header: titulo,
                 message: msg,
-                buttons: ['OK']
+                buttons: [{
+                    text: 'OK',
+                    handler: () => {
+                        (funcao !== undefined) ? funcao() : console.log();
+                    }
+                }]
             });
         } else {
             return alertController.create({

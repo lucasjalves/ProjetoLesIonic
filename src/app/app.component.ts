@@ -22,6 +22,16 @@ export class AppComponent {
       icon: 'cart'
     },
     {
+      title: 'Pedidos',
+      url: '/cliente/pedidos',
+      icon: 'clipboard'
+    },
+    {
+      title: 'Tickets',
+      url: '/cliente/tickets',
+      icon: 'list-box'
+    },
+    {
       title: 'Dados cadastrais',
       url: '/cliente/dados',
       icon: 'body'
@@ -32,14 +42,9 @@ export class AppComponent {
       icon: 'card'
     },
     {
-      title: 'Pedidos',
-      url: '/cliente/pedidos',
-      icon: 'clipboard'
-    },
-    {
-      title: 'Tickets',
-      url: '/cliente/tickets',
-      icon: 'list-box'
+      title: 'Endereços',
+      url: '/cliente/enderecos',
+      icon: 'car'
     }
   ];
 

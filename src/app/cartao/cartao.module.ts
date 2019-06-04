@@ -8,6 +8,8 @@ import { IonicModule } from '@ionic/angular';
 import { CartaoListaPage } from './cartao.page';
 import { SharedModules } from '../modules/shared-modules.module';
 import { CartaoCadastroComponent } from './cadastro/cartao-cadastro.component';
+import { AlterarCartaoComponent } from './alterar/alterar.component';
+import { FormCartaoComponent } from './form/form.component';
 
 const routes: Routes = [
   {
@@ -17,6 +19,10 @@ const routes: Routes = [
   {
     path: 'cadastro',
     component: CartaoCadastroComponent
+  },
+  {
+    path: 'alterar',
+    component: AlterarCartaoComponent
   }
 ];
 
@@ -28,6 +34,6 @@ const routes: Routes = [
     SharedModules,
     RouterModule.forChild(routes)
   ],
-  declarations: [CartaoListaPage, CartaoCadastroComponent]
+  declarations: [CartaoListaPage, CartaoCadastroComponent, AlterarCartaoComponent, FormCartaoComponent]
 })
 export class CartaoListaPageModule {}

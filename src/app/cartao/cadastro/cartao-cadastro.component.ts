@@ -4,6 +4,8 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import { CartaoService } from '../service/cartao.service';
 import { ModalHelper } from '../../common/modal.helper';
 import { Resultado } from '../../common/resultado.model';
+import { Cliente } from 'src/app/cliente/model/cliente.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cartao-cadastro',
@@ -12,12 +14,20 @@ import { Resultado } from '../../common/resultado.model';
 })
 export class CartaoCadastroComponent implements OnInit {
 
-  private cartao: Cartao = new Cartao();
+  public funcao: () => void;
+  public cartao: Cartao = new Cartao();
+  private cliente: Cliente;
 
   constructor(private alertController: AlertController,
               private loadingController: LoadingController,
               private cartaoService: CartaoService,
-              private modalHelper: ModalHelper) { }
+              private modalHelper: ModalHelper,
+              private router: Router) {
+
+                const userString = localStorage.getItem('logged');
+                this.cliente = new Cliente().deserialize(JSON.parse(userString));
+                this.funcao = this.cadastrar.bind(this);
+               }
 
   ngOnInit() {}
 
@@ -32,11 +42,13 @@ export class CartaoCadastroComponent implements OnInit {
     });
     carregando.present();
 
-    this.cartaoService.cadastrar(this.cartao).subscribe((res: any) => {
+    this.cartaoService.cadastrar(this.cartao, this.cliente.cpfCnpj).subscribe((res: any) => {
 
       carregando.dismiss();
       const resultado: Resultado<Cartao> = new Resultado(this.cartao).deserialize(res);
-      this.modalHelper.mostrarModal(this.alertController, 'Cadastro', 'Cadastro realizado com sucesso!', resultado)
+      this.modalHelper.mostrarModal(this.alertController, 'Cadastro', 'Cadastro realizado com sucesso!', resultado, () => {
+        this.router.navigateByUrl('/cliente/cartoes');
+      })
         .then( modal => {
           modal.present();
         });

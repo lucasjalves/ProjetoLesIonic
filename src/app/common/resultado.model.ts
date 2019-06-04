@@ -14,7 +14,6 @@ export class Resultado<T> implements Serializable<Resultado<T>> {
         });
 
         object.entidades.forEach(element => {
-            console.log(element);
             this.entidades.push(this.conversor.deserialize(element));
         });
         return this;

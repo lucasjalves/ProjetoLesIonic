@@ -20,7 +20,9 @@ const routes: Routes = [
     loadChildren: './cliente/cliente-cadastro/cliente-cadastro.module#ClienteCadastroPageModule'
   },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
-  { path: 'cliente/cartoes', loadChildren: './cartao//cartao.module#CartaoListaPageModule' }
+  { path: 'cliente/cartoes', loadChildren: './cartao//cartao.module#CartaoListaPageModule' },
+  { path: 'cliente/enderecos', loadChildren: './endereco/endereco.module#EnderecoPageModule' }
+
 
 ];
 

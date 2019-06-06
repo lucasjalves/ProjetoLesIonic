@@ -43,7 +43,7 @@ export class AppComponent {
     },
     {
       title: 'Endereços',
-      url: '/cliente/enderecos',
+      url: '/cliente/enderecos/listar',
       icon: 'car'
     }
   ];

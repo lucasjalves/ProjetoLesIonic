@@ -1,0 +1,257 @@
+
+
+<form #f="ngForm">
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12" size-sm="12" size-md="12">
+              <ion-item>
+                <ion-label  position="floating"
+                  color="{{
+                    !nome.valid && nome.touched
+                      ? 'danger'
+                      : nome.valid
+                      ? 'success'
+                      : ''
+                  }}"
+                  >Nome</ion-label>
+                <ion-input #nome="ngModel" [(ngModel)]="endereco.nome" required name="nome"></ion-input>
+                <ion-icon *ngIf="nome.valid && numero.touched" ios="ios-checkmark-circle" 
+                  md="md-checkmark-circle"
+                  color="success"
+                  style="margin-bottom: -10px;"
+                  slot="end">
+                </ion-icon>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row style="margin-left: 5%">
+            <ion-col size-sm="12" size-md="12">
+              <ion-text *ngIf="!nome.valid && nome.touched" color="danger">Verifique o preenchimento do campo</ion-text>
+            </ion-col>
+          </ion-row>
+
+
+      <ion-row>
+          <ion-col size="12" size-sm="12" size-md="12">
+            <ion-item>
+              <ion-label  position="floating"
+                color="{{
+                  !cep.valid && cep.touched
+                    ? 'danger'
+                    : cep.valid
+                    ? 'success'
+                    : ''
+                }}">CEP</ion-label>
+              <ion-input maxlength="9" minlength="9" pattern="^[0-9\s-]{9}$" [appMascara]="'00000-000'" #cep="ngModel" [(ngModel)]="endereco.cep" required name="cep"></ion-input>
+              <ion-icon name="search" style="margin-bottom: -10px;" slot="end" (click)="buscarCep(cep.valid)"></ion-icon>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-left: 5%">
+          <ion-col size-sm="12" size-md="12">
+            <ion-text *ngIf="!cep.valid && cep.touched" color="danger">Verifique o preenchimento do campo</ion-text>
+          </ion-col>
+      </ion-row>      
+
+      <ion-row>
+          <ion-col size="12" size-sm="12" size-md="12">
+            <ion-item>
+              <ion-label  position="floating"
+                color="{{
+                  !rua.valid && rua.touched
+                    ? 'danger'
+                    : rua.valid
+                    ? 'success'
+                    : ''
+                }}">Rua</ion-label>
+              <ion-input #rua="ngModel" [(ngModel)]="endereco.rua" required name="rua"></ion-input>
+              <ion-icon *ngIf="(rua.valid && rua.touched) || apiCalled" ios="ios-checkmark-circle" 
+                md="md-checkmark-circle"
+                color="success"
+                style="margin-bottom: -10px;"
+                slot="end">
+              </ion-icon>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-left: 5%">
+          <ion-col size-sm="12" size-md="12">
+            <ion-text *ngIf="!rua.valid && rua.touched" color="danger">Verifique o preenchimento do campo</ion-text>
+          </ion-col>
+      </ion-row>
+
+      <ion-row>
+          <ion-col size="12" size-sm="12" size-md="12">
+            <ion-item>
+              <ion-label  position="floating"
+                color="{{
+                  !bairro.valid && bairro.touched
+                    ? 'danger'
+                    : bairro.valid
+                    ? 'success'
+                    : ''
+                }}">Bairro</ion-label>
+              <ion-input #bairro="ngModel" [(ngModel)]="endereco.bairro" required name="bairro"></ion-input>
+              <ion-icon *ngIf="(bairro.valid && bairro.touched) || apiCalled" ios="ios-checkmark-circle" 
+                md="md-checkmark-circle"
+                color="success"
+                style="margin-bottom: -10px;"
+                slot="end">
+              </ion-icon>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-left: 5%">
+          <ion-col size-sm="12" size-md="12">
+            <ion-text *ngIf="!bairro.valid && bairro.touched" color="danger">Verifique o preenchimento do campo</ion-text>
+          </ion-col>
+      </ion-row>
+
+            
+      <ion-row>
+          <ion-col size="12" size-sm="12" size-md="12">
+            <ion-item>
+              <ion-label  position="floating"
+                color="{{
+                  !cidade.valid && cidade.touched
+                    ? 'danger'
+                    : cidade.valid
+                    ? 'success'
+                    : ''
+                }}">Cidade</ion-label>
+              <ion-input #cidade="ngModel" [(ngModel)]="endereco.cidade" required name="cidade"></ion-input>
+              <ion-icon *ngIf="(cidade.valid && cidade.touched) || apiCalled" ios="ios-checkmark-circle" 
+                md="md-checkmark-circle"
+                color="success"
+                style="margin-bottom: -10px;"
+                slot="end">
+              </ion-icon>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-left: 5%">
+          <ion-col size-sm="12" size-md="12">
+            <ion-text *ngIf="!cidade.valid && cidade.touched" color="danger">Verifique o preenchimento do campo</ion-text>
+          </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+          <ion-col size="12" size-sm="12" size-md="12">
+            <ion-item>
+              <ion-label  position="floating"
+                color="{{
+                  !uf.valid && uf.touched
+                    ? 'danger'
+                    : uf.valid
+                    ? 'success'
+                    : ''
+                }}">UF</ion-label>
+              <ion-input #uf="ngModel" [(ngModel)]="endereco.uf" required name="uf"></ion-input>
+              <ion-icon *ngIf="(uf.valid && uf.touched) || apiCalled" ios="ios-checkmark-circle" 
+                md="md-checkmark-circle"
+                color="success"
+                style="margin-bottom: -10px;"
+                slot="end">
+              </ion-icon>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-left: 5%">
+          <ion-col size-sm="12" size-md="12">
+            <ion-text *ngIf="!uf.valid && uf.touched" color="danger">Verifique o preenchimento do campo</ion-text>
+          </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+          <ion-col size="12" size-sm="12" size-md="12">
+            <ion-item>
+              <ion-label  position="floating"
+                color="{{
+                  !pais.valid && pais.touched
+                    ? 'danger'
+                    : pais.valid
+                    ? 'success'
+                    : ''
+                }}">Pais</ion-label>
+              <ion-input #pais="ngModel" [(ngModel)]="endereco.pais" required name="pais"></ion-input>
+              <ion-icon *ngIf="(pais.valid && pais.touched) || apiCalled" ios="ios-checkmark-circle" 
+                md="md-checkmark-circle"
+                color="success"
+                style="margin-bottom: -10px;"
+                slot="end">
+              </ion-icon>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-left: 5%">
+          <ion-col size-sm="12" size-md="12">
+            <ion-text *ngIf="!pais.valid && pais.touched" color="danger">Verifique o preenchimento do campo</ion-text>
+          </ion-col>
+      </ion-row>
+
+      <ion-row>
+          <ion-col size="12" size-sm="12" size-md="12">
+            <ion-item>
+              <ion-label  position="floating"
+                color="{{
+                  !numero.valid && numero.touched
+                    ? 'danger'
+                    : numero.valid
+                    ? 'success'
+                    : ''
+                }}">Número</ion-label>
+              <ion-input #numero="ngModel" [(ngModel)]="endereco.numero" required name="numero"></ion-input>
+              <ion-icon *ngIf="numero.valid && numero.touched" ios="ios-checkmark-circle" 
+                md="md-checkmark-circle"
+                color="success"
+                style="margin-bottom: -10px;"
+                slot="end">
+              </ion-icon>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-left: 5%">
+          <ion-col size-sm="12" size-md="12">
+            <ion-text *ngIf="!numero.valid && numero.touched" color="danger">Verifique o preenchimento do campo</ion-text>
+          </ion-col>
+      </ion-row>
+
+      <ion-row>
+          <ion-col size="12" size-sm="12" size-md="12">
+            <ion-item>
+              <ion-label  position="floating"
+                color="{{
+                  !complemento.valid && complemento.touched
+                    ? 'danger'
+                    : complemento.valid
+                    ? 'success'
+                    : ''
+                }}">Complemento</ion-label>
+              <ion-input #complemento="ngModel" [(ngModel)]="endereco.complemento" required name="complemento"></ion-input>
+              <ion-icon *ngIf="complemento.valid && complemento.touched" ios="ios-checkmark-circle" 
+                md="md-checkmark-circle"
+                color="success"
+                style="margin-bottom: -10px;"
+                slot="end">
+              </ion-icon>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-left: 5%">
+          <ion-col size-sm="12" size-md="12">
+            <ion-text *ngIf="!complemento.valid && complemento.touched" color="danger">Verifique o preenchimento do campo</ion-text>
+          </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12" size-md="12" size-sm="12">
+          <ion-button expand="block" (click)="funcao()" color="tertiary" disabled="{{ !f.valid }}" >{{tituloBotao}}</ion-button>
+        </ion-col>
+      </ion-row>
+      
+    </ion-grid>
+  </form>
+  
+  

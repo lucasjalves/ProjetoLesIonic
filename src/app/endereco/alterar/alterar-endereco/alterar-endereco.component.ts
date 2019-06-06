@@ -26,6 +26,7 @@ export class AlterarEnderecoComponent implements OnInit {
               private router: Router) {
 
                 this.setQueryParams();
+                this.funcao = this.alterar.bind(this);
                }
 
   ngOnInit() {}
@@ -94,5 +95,25 @@ export class AlterarEnderecoComponent implements OnInit {
 
   async alterar() {
 
+    const loading = await this.loadingController.create({
+      message: 'Carregando...'
+    });
+
+    loading.present();
+    this.enderecoService.alterar(this.endereco).subscribe( res => {
+      loading.dismiss();
+      const resultado = new Resultado(new Endereco()).deserialize(res);
+      this.modalHelper.mostrarModal(this.alertController, 'Alteração', 'Endereceço alterado com sucesso',
+        resultado, () => {this.router.navigateByUrl('/cliente/enderecos/listar'); })
+      .then( modal => {
+        modal.present();
+      });
+    }, err => {
+      loading.dismiss();
+      this.modalHelper.mostrarModal(this.alertController, 'Alteração', 'Sistema temporariamente indisponível. Tente novamente mais tarde')
+      .then( modal => {
+        modal.present();
+      });
+    });
   }
 }

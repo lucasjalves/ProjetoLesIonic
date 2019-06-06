@@ -25,4 +25,8 @@ export class EnderecoService {
   public deletar(id: string) {
     return this.httpClient.delete(`${environment.urlBase}/rest/endereco/deletar/${id}`);
   }
+
+  public alterar(endereco: Endereco) {
+    return this.httpClient.put(`${environment.urlBase}/rest/endereco/alterar`, endereco);
+  }
 }

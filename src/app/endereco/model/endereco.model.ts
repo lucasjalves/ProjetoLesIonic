@@ -1,4 +1,5 @@
 import { Serializable } from '../../common/serializable.interface';
+import { Cartao } from '../../cartao/model/cartao.model';
 
 export class Endereco implements Serializable<Endereco> {
 
@@ -14,17 +15,18 @@ export class Endereco implements Serializable<Endereco> {
     public complemento: string;
 
     deserialize(object: any): Endereco {
-        this.id = object.id;
-        this.nome = object.nome;
-        this.pais = object.pais;
-        this.uf = object.uf;
-        this.cidade = object.cidade;
-        this.bairro = object.bairro;
-        this.cep = object.cep;
-        this.rua = object.rua;
-        this.numero = object.numero;
-        this.complemento = object.complemento;
-        return this;
+        const e = new Endereco();
+        e.id = object.id;
+        e.nome = object.nome;
+        e.pais = object.pais;
+        e.uf = object.uf;
+        e.cidade = object.cidade;
+        e.bairro = object.bairro;
+        e.cep = object.cep;
+        e.rua = object.rua;
+        e.numero = object.numero;
+        e.complemento = object.complemento;
+        return e;
     }
     serialize() {
         return {

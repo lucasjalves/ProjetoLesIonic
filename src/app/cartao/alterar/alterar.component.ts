@@ -83,13 +83,14 @@ export class AlterarCartaoComponent implements OnInit {
     const carregando = await this.loadingController.create({
       message: 'Carregando...'
     });
-    
+
     const alert = await this.alertController.create({
       header: 'Deletar',
       message: 'Deseja deletar este cartão?',
       buttons: [{
         text: 'Cancelar',
-        role: 'cancel'
+        role: 'cancel',
+        handler: () => carregando.dismiss()
       },
       {
         text: 'Sim',
@@ -123,5 +124,5 @@ export class AlterarCartaoComponent implements OnInit {
     });
     alert.present();
   }
-  
+
 }

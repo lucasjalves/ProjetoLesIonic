@@ -15,7 +15,7 @@
                   }}"
                   >Nome</ion-label>
                 <ion-input #nome="ngModel" [(ngModel)]="endereco.nome" required name="nome"></ion-input>
-                <ion-icon *ngIf="nome.valid && numero.touched" ios="ios-checkmark-circle" 
+                <ion-icon *ngIf="nome.valid && nome.touched" ios="ios-checkmark-circle" 
                   md="md-checkmark-circle"
                   color="success"
                   style="margin-bottom: -10px;"

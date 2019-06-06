@@ -6,6 +6,7 @@ export class Resultado<T> implements Serializable<Resultado<T>> {
     public mensagens: Array<string> = new Array();
     public entidades: Array<T> = new Array();
     private conversor: Serializable<T>;
+
     deserialize(object: any): Resultado<T> {
         this.mensagens = new Array();
         this.entidades = new Array();

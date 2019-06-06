@@ -9,6 +9,8 @@ import { EnderecoListaPage } from './endereco.page';
 import { SharedModules } from '../modules/shared-modules.module';
 import { FormEnderecoComponent } from './form-endereco/form-endereco.component';
 import { CadastroEnderecoComponent } from './cadastro/cadastro-endereco/cadastro-endereco.component';
+import { AlterarCartaoComponent } from '../cartao/alterar/alterar.component';
+import { AlterarEnderecoComponent } from './alterar/alterar-endereco/alterar-endereco.component';
 
 const routes: Routes = [
   {
@@ -18,6 +20,10 @@ const routes: Routes = [
   {
     path: 'cadastrar',
     component: CadastroEnderecoComponent
+  },
+  {
+    path: 'alterar',
+    component: AlterarEnderecoComponent
   }
 ];
 
@@ -29,6 +35,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModules
   ],
-  declarations: [EnderecoListaPage, FormEnderecoComponent, CadastroEnderecoComponent]
+  declarations: [EnderecoListaPage, FormEnderecoComponent, CadastroEnderecoComponent, AlterarEnderecoComponent]
 })
 export class EnderecoPageModule {}

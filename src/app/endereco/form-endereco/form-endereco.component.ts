@@ -38,7 +38,10 @@ export class FormEnderecoComponent implements OnInit {
     });
     this.cepService.getCep(this.endereco.cep.replace(/\D/g, '')).subscribe( (res: any) => {
       loading.dismiss();
-      this.endereco = new Endereco();
+      if (res.localidade == null || res.localidade.length === 0) {
+        alert.present();
+        return;
+      }
       this.endereco.cidade = res.localidade;
       this.endereco.rua = res.logradouro;
       this.endereco.uf = res.uf;

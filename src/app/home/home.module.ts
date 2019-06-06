@@ -12,6 +12,7 @@ import { SharedModules } from '../modules/shared-modules.module';
     CommonModule,
     FormsModule,
     IonicModule,
+    SharedModules,
     RouterModule.forChild([
       {
         path: '',

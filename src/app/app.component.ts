@@ -33,7 +33,7 @@ export class AppComponent {
     },
     {
       title: 'Dados cadastrais',
-      url: '/cliente/dados',
+      url: '/cliente',
       icon: 'body'
     },
     {
@@ -56,7 +56,7 @@ export class AppComponent {
     },
     {
       title: 'Login',
-      url: '/login',
+      url: 'cliente/login',
       icon: 'contact'
     },
     {
@@ -78,6 +78,7 @@ export class AppComponent {
     localStorageService.itemValue.subscribe( res => {
       this.logged = localStorage.getItem('logged');
     });
+    this.logged = localStorage.getItem('logged');
   }
 
   initializeApp() {

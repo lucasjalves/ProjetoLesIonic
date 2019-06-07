@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Cliente } from '../cliente/model/cliente.model';
-import { ClienteService } from '../cliente/service/cliente.service';
+import { Cliente } from '../../cliente/model/cliente.model';
+import { ClienteService } from '../../cliente/service/cliente.service';
 import { AlertController, LoadingController } from '@ionic/angular';
-import { ModalHelper } from '../common/modal.helper';
-import { Resultado } from '../common/resultado.model';
+import { ModalHelper } from '../../common/modal.helper';
+import { Resultado } from '../../common/resultado.model';
 import { Router } from '@angular/router';
-import { LocalStorageService } from '../common/localstorage.service';
+import { LocalStorageService } from '../../common/localstorage.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginComponent implements OnInit {
 
   public cliente: Cliente = new Cliente();
   constructor(private clienteService: ClienteService,

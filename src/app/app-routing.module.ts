@@ -15,7 +15,6 @@ export const routes: Routes = [
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
   },
-  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'cliente/cartoes', loadChildren: './cartao//cartao.module#CartaoListaPageModule' },
   { path: 'cliente/enderecos', loadChildren: './endereco/endereco.module#EnderecoPageModule' },
   { path: 'cliente', loadChildren: './cliente/cliente.module#ClientePageModule' }

@@ -10,6 +10,7 @@ import { SharedModules } from '../modules/shared-modules.module';
 import { ClienteFormComponent } from './form/form.page';
 import { CadastroClienteComponent } from './cadastro-cliente/cadastro-cliente.component';
 import { AlterarClienteComponent } from './alterar-cliente/alterar-cliente.component';
+import { LoginComponent } from './login/login.page';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'alterar',
     component: AlterarClienteComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ];
 
@@ -34,6 +39,6 @@ const routes: Routes = [
     SharedModules,
     RouterModule.forChild(routes)
   ],
-  declarations: [ClientePage, ClienteFormComponent, CadastroClienteComponent, AlterarClienteComponent]
+  declarations: [ClientePage, ClienteFormComponent, CadastroClienteComponent, AlterarClienteComponent, LoginComponent]
 })
 export class ClientePageModule {}

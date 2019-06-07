@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Meus detalhes
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col offset="4" size="4">
+        <ion-img
+          src="https://www.freeiconspng.com/uploads/user-login-icon-14.png"
+        ></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col offset="3">
+        <p>
+          <strong>{{ cliente.nome }}</strong>
+        </p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col offset="3">
+        <p>Crédito: R$ {{ cliente.creditoDisponivel }}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col offset="3">
+        <p>CPF: R$ {{ cliente.cpfCnpj }}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col offset="3">
+        <p>Data nascimento: {{ cliente.dtNascimento }}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col offset="3">
+        <p>Username: {{ cliente.username }}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col offset="3">
+        <p>Email: {{ cliente.email }}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col offset="3">
+        <p>Gênero: {{ cliente.genero }}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-button size="large" expand="full" (click)="alterar()" color="tertiary">Alterar dados</ion-button>
+</ion-content>
+<app-pagina-footer></app-pagina-footer>

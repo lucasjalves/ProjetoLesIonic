@@ -1,41 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { Cliente } from '../model/cliente.model';
 import { ClienteService } from '../service/cliente.service';
 import { LoadingController, AlertController } from '@ionic/angular';
-import { Resultado } from '../../common/resultado.model';
 import { ModalHelper } from '../../common/modal.helper';
+import { Cliente } from '../model/cliente.model';
+import { Resultado } from '../../common/resultado.model';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-cliente-cadastro',
-  templateUrl: './cliente-cadastro.page.html',
-  styleUrls: ['./cliente-cadastro.page.scss'],
+  selector: 'app-cadastro-cliente',
+  templateUrl: './cadastro-cliente.component.html',
+  styleUrls: ['./cadastro-cliente.component.scss'],
 })
-export class ClienteCadastroPage implements OnInit {
+export class CadastroClienteComponent implements OnInit {
 
   public cliente: Cliente = new Cliente();
-  public dataMinima: string;
-  public dataMax: string;
+  public funcao: () => void;
   constructor(private clienteService: ClienteService,
               private loadingController: LoadingController,
               private alertController: AlertController,
-              private modalHelper: ModalHelper) { }
+              private modalHelper: ModalHelper,
+              private router: Router) {
 
-  ngOnInit() {
+    this.funcao = this.cadastrar.bind(this);
   }
 
-  ionViewDidEnter() {
-    this.cliente = new Cliente();
-    this.gerarData();
-  }
-
-  gerarData() {
-    const data = new Date();
-    const dataMax = new Date();
-    data.setFullYear(data.getFullYear() - 100);
-    dataMax.setFullYear(dataMax.getFullYear() - 18);
-    this.dataMinima = data.toLocaleDateString().split('/').reverse().join('-');
-    this.dataMax = dataMax.toLocaleDateString().split('/').reverse().join('-');
-  }
+  ngOnInit() {}
 
   async cadastrar() {
     this.cliente.dtFormatada = new Date(this.cliente.dtNascimento).toLocaleDateString();
@@ -51,7 +40,10 @@ export class ClienteCadastroPage implements OnInit {
 
       carregando.dismiss();
       const resultado: Resultado<Cliente> = new Resultado(this.cliente).deserialize(res);
-      this.modalHelper.mostrarModal(this.alertController, 'Cadastro', 'Cadastro realizado com sucesso!', resultado)
+      this.modalHelper.mostrarModal(this.alertController, 'Cadastro', 'Cadastro realizado com sucesso!', resultado,
+        () => {
+          this.router.navigateByUrl('/');
+        })
         .then( modal => {
           modal.present();
         });
@@ -63,5 +55,4 @@ export class ClienteCadastroPage implements OnInit {
       });
     });
   }
-
 }

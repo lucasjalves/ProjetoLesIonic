@@ -1,15 +1,5 @@
-<ion-header>
-  <ion-toolbar color="tertiary">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Cadastre-se
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
+
   <form #f="ngForm">
     <ion-grid>
       <ion-row>
@@ -32,6 +22,7 @@
               maxlength="14"
               [appMascara]="'000.000.000-00'"
               name="cpfCnpj"
+              disabled="{{cadastro}}"
               appCpf
             ></ion-input>
             <ion-icon
@@ -288,10 +279,9 @@
         </ion-row>      
         <ion-row>
           <ion-col size="12" size-md="12" size-sm="12">
-              <ion-button expand="block" (click)="cadastrar()" color="tertiary" disabled='{{!f.valid}}'>Cadastrar</ion-button>
+              <ion-button expand="block" (click)="funcao()" color="tertiary" disabled='{{!f.valid}}'>{{tituloBotao}}</ion-button>
           </ion-col>
         </ion-row>
     </ion-grid>
   </form>
-</ion-content>
-<app-pagina-footer></app-pagina-footer>
+

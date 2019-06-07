@@ -8,7 +8,7 @@ export class LocalStorageService {
     itemValue = new Subject();
 
     setItem(key: string, value: string) {
-        this.itemValue.next(value);
         localStorage.setItem(key, value);
+        this.itemValue.next(value);
     }
 }

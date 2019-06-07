@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-toolbar color="tertiary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        Altere seus dados
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+  
+  <app-cliente-form [cliente]="cliente" [tituloBotao]="'Alterar'" [funcao]="funcao" [cadastro]="true"></app-cliente-form>
+  
+  </ion-content>
+  <app-pagina-footer></app-pagina-footer>

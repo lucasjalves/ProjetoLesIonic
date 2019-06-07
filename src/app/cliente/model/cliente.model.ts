@@ -1,6 +1,7 @@
 import { Serializable } from '../../common/serializable.interface';
 
 export class Cliente implements Serializable<Cliente> {
+    public id = null;
     public cpfCnpj;
     public nome;
     public dtNascimento;
@@ -13,6 +14,7 @@ export class Cliente implements Serializable<Cliente> {
     public creditoDisponivel = '0';
 
     deserialize(object: any): Cliente {
+        this.id = object.id;
         this.cpfCnpj = object.cpfCnpj;
         this.nome = object.nome;
         this.dtNascimento = object.dtNascimento;
@@ -26,6 +28,7 @@ export class Cliente implements Serializable<Cliente> {
     }
     serialize() {
         return {
+            id: this.id,
             cpfCnpj : this.cpfCnpj,
             nome : this.nome,
             dtNascimento : this.dtFormatada,

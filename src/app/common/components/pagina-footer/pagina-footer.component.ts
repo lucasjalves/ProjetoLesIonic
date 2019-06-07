@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Routes, Router } from '@angular/router';
+import { LocalStorageService } from '../../localstorage.service';
 
 
 @Component({
@@ -7,11 +8,32 @@ import { Routes, Router } from '@angular/router';
   templateUrl: './pagina-footer.component.html',
   styleUrls: ['./pagina-footer.component.scss'],
 })
-export class PaginaFooterComponent implements OnInit {
+export class PaginaFooterComponent implements OnInit, AfterViewInit {
 
-  constructor(private router: Router) { }
+  private rotaLogin = 'login';
+  private rotaDetalhe = 'cliente';
+  public rota = 'login';
+  constructor(private router: Router, private localService: LocalStorageService) {
+      this.localService.itemValue.subscribe( itemValue => {
+        if (localStorage.getItem('logged') === null) {
+          this.rota = this.rotaLogin;
+        } else {
+          this.rota = this.rotaDetalhe;
+        }
+      });
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
+
+  ngAfterViewInit() {
+    if (localStorage.getItem('logged') === null) {
+      this.rota = this.rotaLogin;
+    } else {
+      this.rota = this.rotaDetalhe;
+    }
+  }
 
   goToRoute(route: string) {
     this.router.navigateByUrl(route);

@@ -17,4 +17,12 @@ export class ClienteService {
   login(cliente: Cliente) {
     return this.httpClient.post(`${environment.urlBase}/rest/cliente/login`, cliente.serialize());
   }
+
+  getInfo(cpf: string) {
+    return this.httpClient.get(`${environment.urlBase}/rest/cliente/get/${cpf}`);
+  }
+
+  alterar(cliente: Cliente) {
+    return this.httpClient.put(`${environment.urlBase}/rest/cliente/alterar`, cliente);
+  }
 }

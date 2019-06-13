@@ -10,7 +10,7 @@ import { LocalStorageService } from '../../localstorage.service';
 })
 export class PaginaFooterComponent implements OnInit, AfterViewInit {
 
-  private rotaLogin = 'login';
+  private rotaLogin = 'cliente/login';
   private rotaDetalhe = 'cliente';
   public rota = 'login';
   constructor(private router: Router, private localService: LocalStorageService) {

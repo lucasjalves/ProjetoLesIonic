@@ -20,7 +20,7 @@
             <p style="text-align: center;">{{produto.modelo}}</p>
             <p style="text-align: center;">R$ {{produto.precoVenda}}</p>
             <div style="display: flex; justify-content: center;">
-                <ion-button size="small">
+                <ion-button size="small" (click)="irParaDetalhe(produto.id)">
                     <ion-icon slot="start" name="add"></ion-icon>
                     ADD
                 </ion-button>
@@ -28,5 +28,6 @@
       </ion-col>      
     </ion-row>
   </ion-grid>
+  <app-carregando [carregando]="carregando" [qtdeLinhas]="3"></app-carregando>
 </ion-content>
 <app-pagina-footer></app-pagina-footer>

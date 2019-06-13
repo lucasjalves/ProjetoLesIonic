@@ -1,6 +1,7 @@
 import { Serializable } from '../../common/serializable.interface';
 
 export class Produto implements Serializable<Produto> {
+    private id;
     private nome;
     private descricao;
     private precoCompra;
@@ -19,6 +20,7 @@ export class Produto implements Serializable<Produto> {
     private ativo;
 
     deserialize(object: any): Produto {
+        this.id = object.id;
         this.nome = object.nome;
         this.descricao = object.descricao;
         this.precoCompra = object.precoCompra;

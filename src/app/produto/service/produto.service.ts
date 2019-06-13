@@ -11,4 +11,8 @@ export class ProdutoService {
   public buscarTodosProdutos() {
     return this.httpClient.get(environment.urlBase + '/rest/produto/consulta/todos');
   }
+
+  public buscarPorId(id: string) {
+    return this.httpClient.get(`${environment.urlBase}/rest/produto/consulta/${id}`);
+  }
 }

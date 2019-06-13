@@ -1,0 +1,30 @@
+<ion-header >
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Produto - {{produto.modelo}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div >
+    <ion-img [src]="'https://pngimage.net/wp-content/uploads/2018/06/png-cellphone.png'" style="width: 60%; height: 60%; margin:0 auto;"></ion-img>
+  </div>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        This is the expansion title
+      </mat-panel-title>
+      <mat-panel-description>
+        This is a summary of the content
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+  
+    <p>This is the primary content of the panel.</p>
+  
+  </mat-expansion-panel>
+</ion-content>
+<app-pagina-footer></app-pagina-footer>

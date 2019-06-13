@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProdutoService } from '../produto/service/produto.service';
 import { Produto } from '../produto/model/produto.model';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,8 +11,10 @@ import { Produto } from '../produto/model/produto.model';
 })
 export class HomePage {
 
-  produtos: Produto[] = new Array();
-  constructor(private produtoService: ProdutoService) {}
+  public produtos: Produto[] = new Array();
+  public carregando = true;
+  constructor(private produtoService: ProdutoService,
+              private router: Router) {}
 
   ionViewDidEnter() {
     const self = this;
@@ -20,6 +23,15 @@ export class HomePage {
       res.entidades.forEach((el, index) => {
         self.produtos.push(new Produto().deserialize(el));
       });
+      this.carregando = false;
+    });
+  }
+
+  irParaDetalhe(idProduto: string) {
+    this.router.navigate(['/produto/detalhe'], {
+      queryParams: {
+        id: idProduto
+      }
     });
   }
 }

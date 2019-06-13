@@ -15,9 +15,10 @@ export const routes: Routes = [
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
   },
-  { path: 'cliente/cartoes', loadChildren: './cartao//cartao.module#CartaoListaPageModule' },
+  { path: 'cliente/cartoes', loadChildren: './cartao/cartao.module#CartaoListaPageModule' },
   { path: 'cliente/enderecos', loadChildren: './endereco/endereco.module#EnderecoPageModule' },
-  { path: 'cliente', loadChildren: './cliente/cliente.module#ClientePageModule' }
+  { path: 'cliente', loadChildren: './cliente/cliente.module#ClientePageModule' },
+  { path: 'produto', loadChildren: './produto/produto.module#ProdutoModule'}
 
 
 

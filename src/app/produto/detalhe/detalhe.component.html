@@ -10,48 +10,50 @@
 </ion-header>
 
 <ion-content>
-  <div style="margin-top: 3%">
-    <ion-img [src]="'https://pngimage.net/wp-content/uploads/2018/06/png-cellphone.png'" style="width: 60%; height: 60%; margin:0 auto;"></ion-img>
-  </div>
-  <div style="margin-left: 5%;">
-    <h2><strong>{{produto.marca}}, {{produto.modelo}}</strong></h2>
-    <h1>R$ {{produto.precoVenda}}</h1>
-    <h6>Estoque: {{produto.estoque}}</h6>
-  </div>
-  <ion-button color="success" style="display: block; margin: 0 auto; width: 80%; margin-top: 10%">
-      <ion-icon slot="start" name="cart"></ion-icon>
-      Comprar
-  </ion-button>
-  <div class="area-accordion">
-    <mat-accordion>
+  <app-carregando [carregando]="loaded === false" [qtdeLinhas]="5"></app-carregando>
+  <div *ngIf="loaded">
+    <div style="margin-top: 3%">
+      <ion-img [src]="'https://pngimage.net/wp-content/uploads/2018/06/png-cellphone.png'" style="width: 60%; height: 60%; margin:0 auto;"></ion-img>
+    </div>
+    <div style="margin-left: 5%;">
+      <h2><strong>{{produto.marca}}, {{produto.modelo}}</strong></h2>
+      <h1>R$ {{produto.precoVenda}}</h1>
+      <h6>Estoque: {{produto.estoque}}</h6>
+    </div>
+    <ion-button color="success" style="display: block; margin: 0 auto; width: 80%; margin-top: 10%">
+        <ion-icon slot="start" name="cart"></ion-icon>
+        Comprar
+    </ion-button>
+    <div class="area-accordion">
+      <mat-accordion>
 
-      <mat-expansion-panel class="sombra-accordion accordion-tamanho">
-        <mat-expansion-panel-header>
-          Especificações
-        </mat-expansion-panel-header>   
-        <p>{{produto.especificacoes}}</p>   
-      </mat-expansion-panel>
-    
-      <mat-expansion-panel class="sombra-accordion accordion-tamanho">
+        <mat-expansion-panel class="sombra-accordion accordion-tamanho">
           <mat-expansion-panel-header>
-            Detalhes
-          </mat-expansion-panel-header>
-          <p>Categoria: {{produto.categoria}}</p>
-          <p>{{produto.detalhe}}</p>
-          <p>Conteúdo embalagem: {{produto.conteudoEmbalagem}}</p>
-      </mat-expansion-panel>
-
-      <mat-expansion-panel class="sombra-accordion accordion-tamanho">
-          <mat-expansion-panel-header>
-            Dimensões
-          </mat-expansion-panel-header>
+            Especificações
+          </mat-expansion-panel-header>   
+          <p>{{produto.especificacoes}}</p>   
+        </mat-expansion-panel>
       
-          <p>Altura: {{produto.altura}}</p>
-          <p>Largura: {{produto.largura}}</p>   
-          <p>Peso: {{produto.peso}}</p>             
-        </mat-expansion-panel>      
-    </mat-accordion>
-  </div>
+        <mat-expansion-panel class="sombra-accordion accordion-tamanho">
+            <mat-expansion-panel-header>
+              Detalhes
+            </mat-expansion-panel-header>
+            <p>Categoria: {{produto.categoria}}</p>
+            <p>{{produto.detalhe}}</p>
+            <p>Conteúdo embalagem: {{produto.conteudoEmbalagem}}</p>
+        </mat-expansion-panel>
 
+        <mat-expansion-panel class="sombra-accordion accordion-tamanho">
+            <mat-expansion-panel-header>
+              Dimensões
+            </mat-expansion-panel-header>
+        
+            <p>Altura: {{produto.altura}}</p>
+            <p>Largura: {{produto.largura}}</p>   
+            <p>Peso: {{produto.peso}}</p>             
+          </mat-expansion-panel>      
+      </mat-accordion>
+    </div>
+</div>
 </ion-content>
 <app-pagina-footer></app-pagina-footer>

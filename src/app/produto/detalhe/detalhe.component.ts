@@ -12,6 +12,7 @@ import { Resultado } from '../../common/resultado.model';
 export class ProdutoDetalheComponent implements OnInit {
 
   public produto = new Produto();
+  public loaded = false;
   private id: string;
   constructor(private activatedRoute: ActivatedRoute,
               private produtoService: ProdutoService) { }
@@ -19,11 +20,12 @@ export class ProdutoDetalheComponent implements OnInit {
   ngOnInit() {}
 
   ionViewDidEnter() {
+    this.loaded = false;
     this.activatedRoute.queryParams.subscribe( params => {
-      console.log(params);
       this.produtoService.buscarPorId(params.id).subscribe( res => {
         const resultado =  new Resultado(this.produto).deserialize(res);
         this.produto = resultado.entidades[0];
+        this.loaded = true;
       });
     });
   }

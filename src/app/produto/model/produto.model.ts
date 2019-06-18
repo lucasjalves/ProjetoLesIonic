@@ -28,6 +28,7 @@ export class Produto implements Serializable<Produto> {
         this.marca = object.marca;
         this.modelo = object.modelo;
         this.altura = object.altura;
+        this.largura = object.largura;
         this.comprimento = object.comprimento;
         this.peso = object.peso;
         this.especificacoes = object.especificacoes;

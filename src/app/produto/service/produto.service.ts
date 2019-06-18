@@ -13,6 +13,7 @@ export class ProdutoService {
   }
 
   public buscarPorId(id: string) {
+    console.log(id);
     return this.httpClient.get(`${environment.urlBase}/rest/produto/consulta/${id}`);
   }
 }

@@ -20,6 +20,7 @@ export class ProdutoDetalheComponent implements OnInit {
 
   ionViewDidEnter() {
     this.activatedRoute.queryParams.subscribe( params => {
+      console.log(params);
       this.produtoService.buscarPorId(params.id).subscribe( res => {
         const resultado =  new Resultado(this.produto).deserialize(res);
         this.produto = resultado.entidades[0];

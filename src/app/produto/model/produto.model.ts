@@ -1,23 +1,23 @@
 import { Serializable } from '../../common/serializable.interface';
 
 export class Produto implements Serializable<Produto> {
-    private id;
-    private nome;
-    private descricao;
-    private precoCompra;
-    private precoVenda;
-    private marca;
-    private modelo;
-    private altura;
-    private largura;
-    private comprimento;
-    private peso;
-    private especificacoes;
-    private codigoBarras;
-    private categoria;
-    private estoque;
-    private conteudoEmbalagem;
-    private ativo;
+    public id;
+    public nome;
+    public descricao;
+    public precoCompra;
+    public precoVenda: string;
+    public marca;
+    public modelo;
+    public altura;
+    public largura;
+    public comprimento;
+    public peso;
+    public especificacoes;
+    public codigoBarras;
+    public categoria;
+    public estoque;
+    public conteudoEmbalagem;
+    public ativo;
 
     deserialize(object: any): Produto {
         this.id = object.id;

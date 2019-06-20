@@ -20,9 +20,9 @@
       <h1>R$ {{produto.precoVenda}}</h1>
       <h6>Estoque: {{produto.estoque}}</h6>
     </div>
-    <ion-button color="success" style="display: block; margin: 0 auto; width: 80%; margin-top: 10%">
+    <ion-button (click)="adicionarNoCarrinho(produto.id)" color="success" style="display: block; margin: 0 auto; width: 80%; margin-top: 10%">
         <ion-icon slot="start" name="cart"></ion-icon>
-        Comprar
+        Adicionar no carrinho
     </ion-button>
     <div class="area-accordion">
       <mat-accordion>

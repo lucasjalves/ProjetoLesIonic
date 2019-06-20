@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { CarrinhoPage } from './carrinho.page';
+import { SharedModules } from '../modules/shared-modules.module';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    SharedModules,
     RouterModule.forChild(routes)
   ],
   declarations: [CarrinhoPage]

@@ -1,7 +1,7 @@
 <ion-header >
   <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
-      <ion-menu-button ></ion-menu-button>
+      <ion-menu-button maxEdgeStart="0"></ion-menu-button>
     </ion-buttons>
     <ion-title >
       Home
@@ -10,6 +10,46 @@
 </ion-header>
 
 <ion-content>
+    <div class="container" >
+        <div class="scroll" scrollX="true" style="margin-left: 3%;">
+        
+          <ion-icon name="search" slot="start" class="scroll-item" style="font-size: 25px; margin-top: 6%; margin-right: 3%"(click)="buscar()"></ion-icon>
+
+          <ion-input (ngModel)="nome" placeholder="Nome produto"  class="scroll-item" style="width: 50%">
+             
+          </ion-input>  
+
+            <ion-select  (ngModel)="categoria" placeholder="Categoria" class="scroll-item" style="margin-top: 5%; width: 50%" cancelText="Cancelar">
+                <ion-select-option value="">TODOS</ion-select-option>
+                <ion-select-option value="CELULAR">CELULAR</ion-select-option>
+                <ion-select-option value="SMARTPHONE">SMARTPHONE</ion-select-option>
+                <ion-select-option value="TELEFONE">TELEFONE</ion-select-option>
+                <ion-select-option value="CALCULADORA">CALCULADORA</ion-select-option>
+                <ion-select-option value="DRONE">DRONE</ion-select-option>
+                <ion-select-option value="COMPUTADOR">COMPUTADOR</ion-select-option>
+                <ion-select-option value="IMPRESSORA">IMPRESSORA</ion-select-option>
+                <ion-select-option value="TELEVISAO">TELEVISAO</ion-select-option>
+                <ion-select-option value="NOTEBOOK">NOTEBOOK</ion-select-option>
+                <ion-select-option value="SCANNER">SCANNER</ion-select-option>
+                <ion-select-option value="TABLET">TABLET</ion-select-option>
+                <ion-select-option value="CAMERA">CAMERA</ion-select-option>
+                <ion-select-option value="ALARME">ALARME</ion-select-option>
+                <ion-select-option value="CONSOLE">CONSOLE</ion-select-option>
+                <ion-select-option value="ASPIRADOR">ASPIRADOR</ion-select-option>
+                <ion-select-option value="CAFETEIRA">CAFETEIRA</ion-select-option>
+                <ion-select-option value="MICROONDAS">MICROONDAS</ion-select-option>
+                <ion-select-option value="FOGAO">FOGAO</ion-select-option>
+                <ion-select-option value="GELADEIRA">GELADEIRA</ion-select-option>
+                <ion-select-option value="LIQUIDIFICADOR">LIQUIDIFICADOR</ion-select-option>    
+              </ion-select>         
+
+            <p style="margin-left: 10%; margin-top:8.5%">Preço</p>
+            <ion-range (ngModel)="valor" class="scroll-item" style="width: 100%;" pin="true" min="{{min}}" max={{max}} color="secondary">
+                <ion-label slot="start">R$ {{min}}</ion-label>
+                <ion-label slot="end">R$ {{max}}</ion-label>
+            </ion-range>
+        </div>
+    </div>
   <ion-grid>
     <ion-row >
       <ion-col *ngFor="let produto of produtos" style="margin-bottom: 5%; margin-right: 8.2%" size="5">

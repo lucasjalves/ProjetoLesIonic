@@ -13,6 +13,13 @@ export class HomePage {
 
   public produtos: Produto[] = new Array();
   public carregando = true;
+  public min = 0;
+  public max = 1000;
+  public valores = [];
+  public nome = '';
+  public categoria = '';
+  public valor = '';
+
   constructor(private produtoService: ProdutoService,
               private router: Router) {}
 
@@ -24,6 +31,18 @@ export class HomePage {
         self.produtos.push(new Produto().deserialize(el));
       });
       this.carregando = false;
+
+      self.produtos.forEach((produto, index) => {
+        const valor = parseInt(produto.precoVenda.replace(/\./g, '').replace(/\,/, '.'), 10);
+        self.valores.push(valor);
+      });
+
+      if (self.valores.length > 0) {
+        const arraySorted = self.valores.sort();
+        self.max = self.valores[0];
+        self.min = self.valores[self.valores.length - 1];
+      }
+
     });
   }
 
@@ -33,5 +52,9 @@ export class HomePage {
         id: idProduto
       }
     });
+  }
+
+  buscar() {
+
   }
 }

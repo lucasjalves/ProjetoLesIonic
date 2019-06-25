@@ -78,7 +78,7 @@ export class HomePage {
         const item = carrinho.itensCarrinho.filter(i => {
           return i.produto.id === produto.id;
         });
-        produto.qtdeCarrinho = item[0] ? item[0].qtde : 0;
+        produto.qtdeCarrinho = item[0] !== undefined || item[0] !== null  ? item[0].qtde : 0;
       });
   }
   async alterarQtde(qtde: number, produto: Produto) {

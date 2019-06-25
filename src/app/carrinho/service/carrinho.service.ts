@@ -37,7 +37,6 @@ export class CarrinhoService {
 
     if (indiceCarrinho === -1) {
       const obj = await this.verificarDisponibilidadeEstoque(produto.id, qtde).toPromise();
-      console.log(obj);
       resultado = new Resultado(new Produto()).deserialize(obj);
       if (resultado.mensagens.length === 0) {
         const itemCarrinho = new ItemCarrinho();
@@ -47,7 +46,6 @@ export class CarrinhoService {
       }
     } else {
       const qtdeItens = carrinho.itensCarrinho[indiceCarrinho].qtde;
-      console.log((qtdeItens + qtde));
       if ((qtdeItens + qtde) <= 0) {
         carrinho.itensCarrinho[indiceCarrinho].qtde = 0;
         this.subject.next(carrinho);

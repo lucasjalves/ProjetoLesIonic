@@ -14,6 +14,7 @@ export class CartaoListaPage implements OnInit {
 
   public cartoes: Array<Cartao> = new Array();
   private cliente: Cliente;
+  public apiCalled = false;
   constructor(private cartaoService: CartaoService,
               private router: Router) {
 
@@ -25,9 +26,11 @@ export class CartaoListaPage implements OnInit {
   }
 
   ionViewDidEnter() {
+    this.apiCalled = false;
     this.cartaoService.getCartoes(this.cliente.cpfCnpj).subscribe( res => {
       const resultado = new Resultado(new Cartao()).deserialize(res);
       this.cartoes = resultado.entidades as Array<Cartao>;
+      this.apiCalled = true;
     });
   }
 

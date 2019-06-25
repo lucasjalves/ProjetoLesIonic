@@ -2,23 +2,24 @@ import { Serializable } from '../../common/serializable.interface';
 
 export class Produto implements Serializable<Produto> {
     public id;
-    public nome;
+    public nome: string;
     public descricao;
     public precoCompra;
     public precoVenda: string;
     public marca;
-    public modelo;
+    public modelo: string;
     public altura;
+    public detalhe;
     public largura;
     public comprimento;
     public peso;
     public especificacoes;
     public codigoBarras;
-    public categoria;
+    public categoria: string;
     public estoque;
     public conteudoEmbalagem;
     public ativo;
-
+    public qtdeCarrinho = 0;
     deserialize(object: any): Produto {
         this.id = object.id;
         this.nome = object.nome;
@@ -31,6 +32,7 @@ export class Produto implements Serializable<Produto> {
         this.largura = object.largura;
         this.comprimento = object.comprimento;
         this.peso = object.peso;
+        this.detalhe = object.detalhe;
         this.especificacoes = object.especificacoes;
         this.peso = object.peso;
         this.especificacoes = object.especificacoes;

@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { ItemCarrinho } from '../model/item-carrinho.model';
 import { Produto } from '../../produto/model/produto.model';
+import { Resultado } from 'src/app/common/resultado.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,33 +25,49 @@ export class CarrinhoService {
   }
 
   verificarDisponibilidadeEstoque(idProduto: string, qtde: number) {
-    let qtdeCarrinho = 0;
-    const indiceCarrinho  = this.getCarrinho().itensCarrinho.findIndex((item, index, array) => {
-      return item.produto.id === idProduto;
-    });
-    if (indiceCarrinho !== -1) {
-      qtdeCarrinho = this.getCarrinho().itensCarrinho[indiceCarrinho].qtde;
-    }
-    return this.httpClient.get(`${environment.urlBase}/rest/carrinho/adicionar/${idProduto}?qtde=${qtde + qtdeCarrinho}`);
+    return this.httpClient.get(`${environment.urlBase}/rest/carrinho/adicionar/${idProduto}?qtde=${qtde}`);
   }
 
-  adicionarItemCarrinho(produto: Produto, qtde: number) {
+  async alterarQtde(produto: Produto, qtde: number) {
     const carrinho = this.getCarrinho();
+    let resultado: Resultado<Produto>;
     const indiceCarrinho  = carrinho.itensCarrinho.findIndex((item, index, array) => {
       return item.produto.id === produto.id;
     });
 
     if (indiceCarrinho === -1) {
-      const itemCarrinho = new ItemCarrinho();
-      itemCarrinho.qtde = qtde;
-      itemCarrinho.produto = produto;
-      carrinho.itensCarrinho.push(itemCarrinho);
+      const obj = await this.verificarDisponibilidadeEstoque(produto.id, qtde).toPromise();
+      console.log(obj);
+      resultado = new Resultado(new Produto()).deserialize(obj);
+      if (resultado.mensagens.length === 0) {
+        const itemCarrinho = new ItemCarrinho();
+        itemCarrinho.qtde = qtde;
+        itemCarrinho.produto = produto;
+        carrinho.itensCarrinho.push(itemCarrinho);
+      }
     } else {
       const qtdeItens = carrinho.itensCarrinho[indiceCarrinho].qtde;
-      carrinho.itensCarrinho[indiceCarrinho].qtde = qtdeItens + qtde;
+      console.log((qtdeItens + qtde));
+      if ((qtdeItens + qtde) <= 0) {
+        carrinho.itensCarrinho[indiceCarrinho].qtde = 0;
+        this.subject.next(carrinho);
+        this.atualizarCarrinho(carrinho);
+        return new Resultado(new Produto());
+      }
+      const obj = await this.verificarDisponibilidadeEstoque(
+        carrinho.itensCarrinho[indiceCarrinho].produto.id, qtdeItens + qtde).toPromise();
+
+      resultado = new Resultado(new Produto()).deserialize(obj);
+
+      if (resultado.mensagens.length === 0) {
+        carrinho.itensCarrinho[indiceCarrinho].qtde = qtdeItens + qtde;
+      }
     }
-    this.subject.next(carrinho);
-    this.atualizarCarrinho(carrinho);
+    if (resultado.mensagens.length === 0) {
+      this.subject.next(carrinho);
+      this.atualizarCarrinho(carrinho);
+    }
+    return resultado;
   }
 
   getCarrinho(): Carrinho {

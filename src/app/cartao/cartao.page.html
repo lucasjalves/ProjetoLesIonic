@@ -15,7 +15,8 @@
   </ion-header>
 
 <ion-content>
-  <ion-grid>
+    <app-carregando [carregando]="!apiCalled" [qtdeLinhas]="3"></app-carregando>
+  <ion-grid *ngIf="apiCalled">
     <ion-row>
       <ion-col size="12">
         <ion-list>
@@ -35,6 +36,6 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    <app-carregando [carregando]="cartoes.length === 0" [qtdeLinhas]="3"></app-carregando>
+   
 </ion-content>
 <app-pagina-footer></app-pagina-footer>

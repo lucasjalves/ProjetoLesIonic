@@ -48,22 +48,17 @@ export class ProdutoDetalheComponent implements OnInit {
       message: 'Produto adicionado no carrinho',
       duration: 2000
     });
-    loading.present();
-    this.carrinhoService.verificarDisponibilidadeEstoque(this.produto.id, 1).subscribe( res => {
-      const resultado = new Resultado(new Produto()).deserialize(res);
-      loading.dismiss();
-      if (resultado.mensagens.length === 0) {
-        this.carrinhoService.adicionarItemCarrinho(this.produto, 1);
+    this.carrinhoService.alterarQtde(this.produto, 1).then(res => {
+      if (res.mensagens.length === 0) {
         toast.present();
       } else {
-        this.modalHelper.mostrarModal(this.alertController, 'Erro', '', resultado).then(modal => {
+        this.modalHelper.mostrarModal(this.alertController, 'Erro', '', res).then(modal => {
           modal.present();
         });
       }
-    }, err => {
-      loading.dismiss();
-      this.modalHelper.mostrarModal(this.alertController, 'Falha', 'Sistema temporariamente indisponível. Tente novamente mais tarde.')
-      .then(modal => {
+    }).catch( err => {
+      this.modalHelper.mostrarModal(this.alertController, 'Erro', 'Erro ao adicionar o item no carrinho. Tente novamente mais tarde.')
+      .then( modal => {
         modal.present();
       });
     });

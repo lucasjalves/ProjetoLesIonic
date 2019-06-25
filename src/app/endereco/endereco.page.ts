@@ -15,6 +15,7 @@ export class EnderecoListaPage implements OnInit {
 
   public enderecos: Array<Endereco> = new Array();
   private cliente: Cliente;
+  public apiCalled = false;
   constructor(private enderecoService: EnderecoService,
               private router: Router) { }
 
@@ -22,13 +23,14 @@ export class EnderecoListaPage implements OnInit {
   }
 
   ionViewDidEnter() {
+    this.apiCalled = false;
     this.enderecos = new Array();
     const logged = localStorage.getItem('logged');
     this.cliente = new Cliente().deserialize(JSON.parse(logged));
     this.enderecoService.getEnderecos(this.cliente.cpfCnpj).subscribe( res => {
       const resultado: Resultado<Endereco> = new Resultado(new Endereco()).deserialize(res);
-      console.log(resultado.entidades);
       this.enderecos = resultado.entidades;
+      this.apiCalled = true;
     });
   }
 

@@ -10,6 +10,40 @@
   </ion-header>
 
 <ion-content>
-
+    <ion-grid>
+        <ion-row *ngFor="let produto of produtos" style="margin-bottom: 5%">
+          <ion-col size="4" (click)="irParaDetalhe(produto.id)">
+              <ion-item lines="none">
+                  <ion-img [src]="'https://pngimage.net/wp-content/uploads/2018/06/png-cellphone.png'"></ion-img>         
+              </ion-item>
+          </ion-col>  
+          <ion-col size="8">
+            <ion-row>
+              <ion-col (click)="irParaDetalhe(produto.id)">
+                  {{produto.modelo}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    {{produto.marca}}
+                </ion-col>
+              </ion-row>        
+            <ion-row>
+                <ion-col size="6">
+                    <label style="color: #1abcac">R$ {{produto.precoVenda}}</label>
+                </ion-col>
+                <ion-col size="6" >
+                    <ion-item lines="none" style="margin-top: -13px; margin-left: -15px;">
+                        <ion-icon style="margin-right: 6px;" (click)="alterarQtde(-1, produto)" name="remove-circle-outline" class="icone" slot="start"></ion-icon>
+                        <ion-label style="text-align: center;">{{produto.qtdeCarrinho}}</ion-label>
+                        <ion-icon style="margin-right: 0px; margin-left: 0px;" class="icone" (click)="alterarQtde(1, produto)" name="add-circle-outline" slot="end"></ion-icon>
+                      </ion-item>
+                </ion-col>
+            </ion-row>     
+          </ion-col>
+        
+        </ion-row>
+      </ion-grid>
+      <app-carregando [carregando]="carregando" [qtdeLinhas]="3"></app-carregando>
 </ion-content>
 <app-pagina-footer></app-pagina-footer>

@@ -19,6 +19,7 @@ export class CarrinhoPage {
   public carregando = true;
   public carrinho: Carrinho;
   public total: string;
+  public codigoCupom: string;
   constructor(private produtoService: ProdutoService,
               private router: Router,
               private carrinhoService: CarrinhoService,
@@ -87,10 +88,14 @@ export class CarrinhoPage {
       c = isNaN(c = Math.abs(c)) ? 2 : c;
       d = d === undefined ? '.' : d;
       t = t === undefined ? ',' : t;
-      const s = n < 0 ? '-' : '',
-      i = parseInt(n = Math.abs(Number(n) || 0).toFixed(c), 10).toString();
-      let j = (j = i.length) > 3 ? j % 3 : 0;
-     return s + (j ? i.substr(0, j) + t : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, '$1' + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : '');
+      const s = n < 0 ? '-' : '';
+      const i: any = parseInt(n = Math.abs(Number(n) || 0).toFixed(c), 10).toString();
+      const j = i.length > 3 ? i.length % 3 : 0;
+      return s + (j ? i.substr(0, j) + t : '') + i.substr(j)
+      .replace(/(\d{3})(?=\d)/g, '$1' + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : '');
   }
 
+  adicionarCupom() {
+
+  }
 }

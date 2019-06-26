@@ -10,7 +10,13 @@
   </ion-header>
 
 <ion-content>
+
     <ion-grid *ngIf="total !== '0.00'">
+      <ion-row style="border-bottom: 1px solid rgb(202, 195, 195,0.50); margin-bottom: 2%">
+        <ion-col>
+                <h2 style="color: grey; font-weight: 100">Total: <span style="color:green; font-weight: 500">R$ {{total}}</span></h2>
+        </ion-col>
+      </ion-row>
         <ion-row class="sombra-item-carrinho" *ngFor="let item of carrinho.itensCarrinho"  style="margin-bottom: 5%">
           <ion-col style="margin-top: 3%;"*ngIf="item.qtde > 0" size="4" (click)="irParaDetalhe(item.produto.id)">
               <ion-item lines="none">
@@ -44,16 +50,35 @@
                 </ion-col>
             </ion-row>     
           </ion-col>
-        
         </ion-row>
-        <ion-row>
-          <ion-col>
-            <h2 style="float:right;">Total: R$ {{total}}</h2>
+        <ion-row  >
+            <ion-col>
+                <h3 style="color: #f60">CUPOM DE DESCONTOS</h3>
+            </ion-col>
+        </ion-row>    
+        <ion-row style="border-bottom: 1px solid rgb(202, 195, 195,0.50); margin-bottom: 2%">
+           <ion-col size="6">
+             <ion-input [(ngModel)]="codigoCupom" placeholder="CUPOM" style="border: 1px solid #c7cccc;  border-radius: 4px; margin-top: 3%"></ion-input>
           </ion-col>
-        </ion-row>
+          <ion-col size="6">
+              <ion-button color="medium" expand="block" (click)="adicionarCupom()" fill="outline">Aplicar</ion-button>
+           </ion-col>     
+        </ion-row>    
       </ion-grid>
       <div *ngIf="total === '0.00'" >
-          <ion-img style="margin: 0 auto;" style="width: 60%; height: 60%"[src]="'https://www.pinclipart.com/picdir/middle/139-1395741_shopping-cart-sign-comments-free-icon-empty-cart.png'"></ion-img>
+        <ion-grid style="position: absolute; top: 25%">
+          <ion-row>
+              <ion-col offset="4" size="4">
+                  <ion-img [src]="'https://png.pngtree.com/svg/20161117/bfef3f3c9c.svg'"></ion-img>
+              </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col style="text-align: center;">
+                <b >Você não tem itens no carrinho</b>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+          
       </div>
       <app-carregando [carregando]="carregando" [qtdeLinhas]="3"></app-carregando>
 </ion-content>

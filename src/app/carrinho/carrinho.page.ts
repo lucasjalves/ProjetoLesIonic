@@ -3,8 +3,12 @@ import { ProdutoService } from '../produto/service/produto.service';
 import { Produto } from '../produto/model/produto.model';
 import { Router } from '@angular/router';
 import { CarrinhoService } from '../carrinho/service/carrinho.service';
-import { ToastController } from '@ionic/angular';
+import { ToastController, LoadingController, AlertController } from '@ionic/angular';
 import { Carrinho } from './model/carrinho.model';
+import { CupomService } from '../cupom/cupom.service';
+import { Cupom } from '../cupom/cupom.model';
+import { Resultado } from '../common/resultado.model';
+import { ModalHelper } from '../common/modal.helper';
 
 @Component({
   selector: 'app-carrinho',
@@ -23,7 +27,11 @@ export class CarrinhoPage {
   constructor(private produtoService: ProdutoService,
               private router: Router,
               private carrinhoService: CarrinhoService,
-              private toastController: ToastController) {}
+              private toastController: ToastController,
+              private cupomService: CupomService,
+              private alertController: AlertController,
+              private loadingController: LoadingController,
+              private modalHelper: ModalHelper) {}
 
   ionViewDidEnter() {
     this.carrinho = this.filtarCarrinho(this.carrinhoService.getCarrinho());
@@ -95,7 +103,15 @@ export class CarrinhoPage {
       .replace(/(\d{3})(?=\d)/g, '$1' + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : '');
   }
 
-  adicionarCupom() {
+  async adicionarCupom() {
+    const loading = await this.loadingController.create({
+      message: 'Carregando...'
+    });
+    loading.present();
+    this.cupomService.consultar(this.codigoCupom).subscribe( (res: any) => {
+      loading.dismiss();
+      const resultado = new Resultado<Cupom>(new Cupom()).deserialize(res);
 
+    });
   }
 }

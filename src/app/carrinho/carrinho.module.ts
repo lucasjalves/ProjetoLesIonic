@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { CarrinhoPage } from './carrinho.page';
 import { SharedModules } from '../modules/shared-modules.module';
 
+
 const routes: Routes = [
   {
     path: '',

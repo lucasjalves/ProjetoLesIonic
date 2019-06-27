@@ -1,4 +1,6 @@
 import { Serializable } from '../../common/serializable.interface';
+import { Endereco } from 'src/app/endereco/model/endereco.model';
+import { Cartao } from '../../cartao/model/cartao.model';
 
 export class Cliente implements Serializable<Cliente> {
     public id = null;
@@ -12,6 +14,8 @@ export class Cliente implements Serializable<Cliente> {
     public ativo;
     public dtFormatada;
     public creditoDisponivel = '0';
+    public enderecos: Array<Endereco> = new Array();
+    public cartoes: Array<Cartao> = new Array();
 
     deserialize(object: any): Cliente {
         this.id = object.id;
@@ -24,6 +28,21 @@ export class Cliente implements Serializable<Cliente> {
         this.genero = object.genero;
         this.ativo = object.ativo;
         this.creditoDisponivel = object.creditoDisponivel;
+
+        if (object.enderecos !== undefined) {
+            for (const endereco of object.enderecos) {
+                const e = new Endereco().deserialize(endereco);
+                this.enderecos.push(e);
+            }
+        }
+
+        if (object.cartoes !== undefined) {
+            for (const cartao of object.cartoes) {
+                const c = new Cartao().deserialize(cartao);
+                this.cartoes.push(c);
+            }
+        }
+
         return this;
     }
     serialize() {

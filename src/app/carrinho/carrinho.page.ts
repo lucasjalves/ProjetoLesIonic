@@ -10,6 +10,8 @@ import { Cupom } from '../cupom/cupom.model';
 import { Resultado } from '../common/resultado.model';
 import { ModalHelper } from '../common/modal.helper';
 import { environment } from 'src/environments/environment';
+import { Cliente } from '../cliente/model/cliente.model';
+import { ClienteService } from '../cliente/service/cliente.service';
 
 @Component({
   selector: 'app-carrinho',
@@ -28,6 +30,7 @@ export class CarrinhoPage {
   public codigoCupom: string;
   public desconto: string;
   public frete;
+  public cliente: Cliente;
   constructor(private produtoService: ProdutoService,
               private router: Router,
               private carrinhoService: CarrinhoService,
@@ -35,11 +38,19 @@ export class CarrinhoPage {
               private cupomService: CupomService,
               private alertController: AlertController,
               private loadingController: LoadingController,
-              private modalHelper: ModalHelper) {}
+              private modalHelper: ModalHelper,
+              private clienteService: ClienteService) {}
 
   ionViewDidEnter() {
     this.carrinho = this.filtarCarrinho(this.carrinhoService.getCarrinho());
     this.carregando = false;
+    const logado = localStorage.getItem('logged');
+    const c = new Cliente().deserialize(JSON.parse(logado));
+    this.clienteService.getInfo(c.cpfCnpj).subscribe( res => {
+      const resultado = new Resultado(new Cliente()).deserialize(res);
+      console.log(resultado);
+      this.cliente = resultado.entidades[0];
+    });
   }
 
   irParaDetalhe(idProduto: string) {
@@ -160,6 +171,6 @@ export class CarrinhoPage {
   }
 
   irParaEndereco() {
-
+    this.router.navigateByUrl('carrinho/endereco');
   }
 }

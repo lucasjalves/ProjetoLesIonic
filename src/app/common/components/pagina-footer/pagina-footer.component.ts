@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, AfterContentInit } from '@angular/core';
 import { Routes, Router } from '@angular/router';
 import { LocalStorageService } from '../../localstorage.service';
 
@@ -8,7 +8,7 @@ import { LocalStorageService } from '../../localstorage.service';
   templateUrl: './pagina-footer.component.html',
   styleUrls: ['./pagina-footer.component.scss'],
 })
-export class PaginaFooterComponent implements OnInit, AfterViewInit {
+export class PaginaFooterComponent implements OnInit, AfterContentInit {
 
   private rotaLogin = 'cliente/login';
   private rotaDetalhe = 'cliente';
@@ -27,7 +27,7 @@ export class PaginaFooterComponent implements OnInit, AfterViewInit {
 
   }
 
-  ngAfterViewInit() {
+  ngAfterContentInit() {
     if (localStorage.getItem('logged') === null) {
       this.rota = this.rotaLogin;
     } else {

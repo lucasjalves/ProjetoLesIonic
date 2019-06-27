@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ɵConsole } from '@angular/core';
 import { ProdutoService } from '../produto/service/produto.service';
 import { Produto } from '../produto/model/produto.model';
 import { Router } from '@angular/router';
@@ -9,6 +9,7 @@ import { CupomService } from '../cupom/cupom.service';
 import { Cupom } from '../cupom/cupom.model';
 import { Resultado } from '../common/resultado.model';
 import { ModalHelper } from '../common/modal.helper';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-carrinho',
@@ -21,9 +22,12 @@ export class CarrinhoPage {
 
   public produtos: Produto[] = new Array();
   public carregando = true;
-  public carrinho: Carrinho;
+  public carrinho: Carrinho = new Carrinho();
   public total: string;
+  public totalItens: string;
   public codigoCupom: string;
+  public desconto: string;
+  public frete;
   constructor(private produtoService: ProdutoService,
               private router: Router,
               private carrinhoService: CarrinhoService,
@@ -85,11 +89,31 @@ export class CarrinhoPage {
 
   atualizarTotal(carrinho: Carrinho) {
     let tot = 0;
+    let frete = 0;
+    let totItens = 0;
+    let desconto = 0;
+
     carrinho.itensCarrinho.forEach(item => {
       const valorItem = parseInt(item.produto.precoVenda.replace(/\./g, '').replace(/\,/g, '.'), 10) * item.qtde;
       tot = tot + valorItem;
+      totItens = tot;
+      const peso = parseInt(item.produto.peso, 10) / environment.taxa_divisao;
+      const altura = parseInt(item.produto.altura, 10 ) / environment.taxa_divisao;
+      const comprimento = parseInt(item.produto.comprimento, 10) / environment.taxa_divisao;
+      const largura = parseInt(item.produto.largura, 10) / environment.taxa_divisao;
+
+      frete = ((peso + altura + comprimento + largura) * item.qtde) + environment.taxa_fixa_frete;
     });
+    if (carrinho.cupom.codigo !== undefined && carrinho.cupom.codigo !== null) {
+      desconto = (tot * (carrinho.cupom.valorDesconto / 100));
+      tot = tot - desconto;
+    }
+    tot = tot + frete;
+    this.frete = this.formatMoney(frete, ',', '.');
     this.total = this.formatMoney(tot, ',' , '.');
+    this.totalItens = this.formatMoney(totItens, ',', '.');
+    this.desconto = this.formatMoney(desconto, ',' , '.');
+
   }
 
   formatMoney(n, c?, d?, t?) {
@@ -111,7 +135,31 @@ export class CarrinhoPage {
     this.cupomService.consultar(this.codigoCupom).subscribe( (res: any) => {
       loading.dismiss();
       const resultado = new Resultado<Cupom>(new Cupom()).deserialize(res);
-
+      if (resultado.mensagens.length > 0) {
+        this.modalHelper.mostrarModal(this.alertController, 'Erro', 'Sistema indisponível', resultado)
+        .then(modal => {
+          modal.present();
+        });
+      } else {
+        const carrinho = this.carrinhoService.getCarrinho();
+        carrinho.cupom = resultado.entidades[0];
+        this.carrinho.cupom =  resultado.entidades[0];
+        this.carrinhoService.atualizarCarrinho(carrinho);
+        this.carrinho.itensCarrinho = this.carrinho.itensCarrinho.filter(item => {
+          return item.qtde > 0;
+        });
+        this.atualizarTotal(carrinho);
+      }
     });
+  }
+
+  removerCupom() {
+    this.carrinho.cupom = new Cupom();
+    this.carrinhoService.atualizarCarrinho(this.carrinho);
+    this.atualizarTotal(this.carrinho);
+  }
+
+  irParaEndereco() {
+
   }
 }

@@ -1,20 +1,20 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, AfterContentInit } from '@angular/core';
 
 @Component({
   selector: 'app-carregando',
   templateUrl: './carregando.component.html',
   styleUrls: ['./carregando.component.scss'],
 })
-export class CarregandoComponent implements OnInit, AfterViewInit {
+export class CarregandoComponent implements OnInit, AfterContentInit {
 
-  @Input() private carregando = true;
-  @Input() private qtdeLinhas = 1;
+  @Input() public carregando = true;
+  @Input() public qtdeLinhas = 1;
   public qtde = new Array(0);
   constructor() { }
 
   ngOnInit() {}
 
-  ngAfterViewInit() {
+  ngAfterContentInit() {
     this.inicializarArray();
   }
 

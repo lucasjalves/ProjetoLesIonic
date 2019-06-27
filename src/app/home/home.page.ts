@@ -48,9 +48,12 @@ export class HomePage {
       });
 
       if (this.valores.length > 0) {
-        const arraySorted = this.valores.sort();
-        this.min = this.valores[0];
-        this.max = this.valores[this.valores.length - 1];
+        const arraySorted = this.valores.sort((a, b) => {
+          return a - b;
+        });
+        console.log(arraySorted);
+        this.min = arraySorted[0];
+        this.max = arraySorted[arraySorted.length - 1];
         this.valor = this.max.toString();
       }
 

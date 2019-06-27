@@ -62,8 +62,35 @@
           </ion-col>
           <ion-col size="6">
               <ion-button color="medium" expand="block" (click)="adicionarCupom()" fill="outline">Aplicar</ion-button>
-           </ion-col>     
-        </ion-row>    
+           </ion-col> 
+           <ion-col *ngIf="carrinho.cupom.codigo !== undefined && carrinho.cupom.codigo !== null" size="12">
+             <ion-item lines="none">
+                <ion-label>Cupom {{carrinho.cupom.codigo}} ({{carrinho.cupom.valorDesconto}} %)</ion-label>
+                <ion-icon name="close" slot="end" (click)="removerCupom()"></ion-icon>
+             </ion-item>
+           </ion-col>    
+        </ion-row>
+        <ion-row  >
+            <ion-col>
+                <h4>VALORES</h4>
+            </ion-col>
+        </ion-row>            
+        <ion-row style="color: grey; margin-top: 3%; border-bottom: 1px solid rgb(202, 195, 195,0.50);">
+          <ion-col>Total dos itens</ion-col>
+          <ion-col offset="4"><b>R$ {{totalItens}}</b></ion-col>
+        </ion-row>  
+        <ion-row style="color: grey; margin-top: 3%; border-bottom: 1px solid rgb(202, 195, 195,0.50);">
+            <ion-col>Frete</ion-col>
+            <ion-col offset="4"><b>R$ {{frete}}</b></ion-col>
+        </ion-row>
+        <ion-row style="color: grey; margin-top: 3%; border-bottom: 1px solid rgb(202, 195, 195,0.50);">
+            <ion-col>Desconto</ion-col>
+            <ion-col offset="4"><b>R$ {{desconto}}</b></ion-col>
+        </ion-row> 
+        <ion-row style="color: grey; margin-top: 3%; border-bottom: 1px solid rgb(202, 195, 195,0.50);">
+            <ion-col>Total a pagar</ion-col>
+            <ion-col offset="4"><b>R$ {{total}}</b></ion-col>
+        </ion-row>                          
       </ion-grid>
       <div *ngIf="total === '0.00'" >
         <ion-grid style="position: absolute; top: 25%">
@@ -82,4 +109,5 @@
       </div>
       <app-carregando [carregando]="carregando" [qtdeLinhas]="3"></app-carregando>
 </ion-content>
+<ion-button color="success" expand="full" (click)="irParaEndereco()">Continuar</ion-button>
 <app-pagina-footer></app-pagina-footer>

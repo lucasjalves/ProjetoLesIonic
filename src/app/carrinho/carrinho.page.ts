@@ -163,6 +163,11 @@ export class CarrinhoPage {
         });
         this.atualizarTotal(carrinho);
       }
+    }, err => {
+      this.modalHelper.mostrarModal(this.alertController, 'Erro', 'Sistema temporariamente indisónível. Tenta novamente mais tarde')
+      .then( modal => {
+        modal.present();
+      });
     });
   }
 
@@ -176,14 +181,38 @@ export class CarrinhoPage {
     this.router.navigateByUrl('cliente/login');
   }
 
-  comprar() {
+  async comprar() {
+    const loading = await this.loadingController.create({
+      message: 'Carregando...'
+    });
+    loading.present();
+
     const endereco = this.cliente.enderecos.filter(e => {
       return parseInt(e.id, 10) === parseInt(this.idEndereco, 10);
     })[0];
     this.carrinho.endereco = endereco;
     this.pedidoService.confirmarPedido(this.carrinho, this.cliente.cpfCnpj).subscribe(res => {
+      loading.dismiss();
       const resultado = new Resultado<Pedido>(new Pedido()).deserialize(res);
-      console.log(resultado);
+      if (resultado.mensagens.length > 0) {
+        this.modalHelper.mostrarModal(this.alertController, 'Erro', 'Sistema Indisponível. Tente novamente mais tarde', resultado)
+        .then(modal => {
+          modal.present();
+        });
+      } else {
+        this.carrinhoService.atualizarCarrinho(new Carrinho());
+        this.carrinho = new Carrinho();
+        this.router.navigate(['pedido/detalhe'], {
+          queryParams: {
+            id: resultado.entidades[0].id
+          }
+        });
+      }
+    }, err => {
+      this.modalHelper.mostrarModal(this.alertController, 'Erro', 'Sistema indisponível. Tente novamente mais tarde')
+      .then(modal => {
+        modal.present();
+      });
     });
   }
 }

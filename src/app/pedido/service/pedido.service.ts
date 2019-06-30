@@ -17,4 +17,8 @@ export class PedidoService {
   confirmarPedido(carrinho: Carrinho, cpf: string) {
     return this.httpClient.post(`${environment.urlBase}/rest/pedido/cadastrar/${cpf}`, carrinho.serialize());
   }
+
+  consultarById(id: string) {
+    return this.httpClient.get(`${environment.urlBase}/rest/pedido/get/${id}`);
+  }
 }

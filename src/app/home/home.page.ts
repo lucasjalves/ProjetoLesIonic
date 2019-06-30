@@ -73,14 +73,22 @@ export class HomePage {
         const item = carrinho.itensCarrinho.filter(i => {
           return i.produto.id === produto.id;
         });
-        produto.qtdeCarrinho = item[0].qtde;
+        if (item[0] === undefined) {
+          produto.qtdeCarrinho = 0;
+        } else {
+          produto.qtdeCarrinho = item[0].qtde;
+        }
       });
 
       this.todosProdutos.forEach( produto => {
         const item = carrinho.itensCarrinho.filter(i => {
           return i.produto.id === produto.id;
         });
-        produto.qtdeCarrinho = item[0] !== undefined || item[0] !== null  ? item[0].qtde : 0;
+        if (item[0] === undefined) {
+          produto.qtdeCarrinho = 0;
+        } else {
+          produto.qtdeCarrinho = item[0].qtde;
+        }
       });
   }
   async alterarQtde(qtde: number, produto: Produto) {

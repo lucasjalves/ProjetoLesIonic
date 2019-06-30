@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Pedido #{{pedido.id}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <app-carregando [carregando]="!apiCalled" [qtdeLinhas]="3"></app-carregando>
+  <ion-grid *ngIf="apiCalled">
+    <div class="status">
+      <ion-icon name="{{mapIcones[pedido.status].icone}}" class="{{mapIcones[pedido.status].color}}"></ion-icon>
+      <span>Pedido {{pedido.status}}</span>
+    </div>
+      <h4>Itens do pedido</h4>
+    <ion-row class="sombra-leve">
+      <ion-col size="12">
+      
+        <ion-list>
+              <ion-item *ngFor="let item of pedido.itemPedido">
+                <div style="display: inline-block; width: 100%">
+                  <b style="margin-right: 10%">{{item.quantidade}}x</b>
+                  <span>{{item.produtoPedido.modelo}}</span>
+                  <span style="float:right">R$ {{item.produtoPedido.precoVenda}}</span>
+                </div>
+              </ion-item>
+          </ion-list>
+          <div style="width: 100%">
+            <div class="borda-baixa-cinza" style="width: 100%">
+              <span>Total dos itens </span>
+              <strong>R$ {{pedido.total}}</strong>
+            </div>
+          </div>
+          <div style="width: 100%">
+              <div class="borda-baixa-cinza" style="width: 100%">
+                <span>Frete </span>
+                <strong>R$ {{pedido.frete}}</strong>
+              </div>
+          </div>
+          <div style="width: 100%">
+              <div class="borda-baixa-cinza" style="width: 100%">
+                <span>Total</span>
+                <strong>R$ {{pedido.totalCompra}}</strong>
+              </div>
+            </div>                    
+          <div style="width: 100%" *ngIf="pedido.cupomPedido.codigo !== undefined">
+              <div class="borda-baixa-cinza" style="width: 100%">
+                <span>Desconto </span>
+                <strong>{{pedido.cupomPedido.valorDesconto}} %</strong>
+              </div>
+            </div>          
+        </ion-col>
+      </ion-row>
+      <h4 class="no-margin-bottom">Endereço de entrega</h4>
+      <ion-row class="sombra-leve">
+       
+        <ion-col size="12" class="no-margin-bottom">
+        
+        </ion-col>
+        <ion-col class="endereco" offset="1" size="10">
+          <p><b>{{pedido.endereco.rua}}, {{pedido.endereco.numero}}, {{pedido.endereco.bairro}}</b></p>
+          <p><b>{{pedido.endereco.cep}}</b></p>
+          <p><b>{{pedido.endereco.complemento}}</b></p>
+          <p><b>{{pedido.endereco.uf}}, {{pedido.endereco.pais}}</b></p>
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+</ion-content>
+<app-pagina-footer></app-pagina-footer>

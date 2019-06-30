@@ -23,7 +23,7 @@ export class AppComponent {
     },
     {
       title: 'Pedidos',
-      url: '/cliente/pedidos',
+      url: '/pedido/cliente',
       icon: 'clipboard'
     },
     {

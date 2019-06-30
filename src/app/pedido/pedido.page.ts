@@ -5,11 +5,11 @@ import { Cliente } from '../cliente/model/cliente.model';
 import { Resultado } from '../common/resultado.model';
 
 @Component({
-  selector: 'app-pedido',
-  templateUrl: './pedido.page.html',
-  styleUrls: ['./pedido.page.scss'],
+  selector: 'app-cliente-pedido',
+  templateUrl: './pedido-cliente.page.html',
+  styleUrls: ['./pedido-cliente.page.scss'],
 })
-export class PedidoPage implements OnInit {
+export class PedidoClientePage implements OnInit {
 
   public apiCalled = false;
   public pedidos: Array<Pedido> = new Array();

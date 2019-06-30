@@ -1,0 +1,54 @@
+
+b {
+    font-weight: normal;
+}
+.no-margin-bottom {
+    margin-bottom: 0px;
+}
+
+ion-row.sombra-leve {
+    margin: 3% 0 8% 0;
+}
+
+h4 {
+    margin-left: 3%;
+}
+
+h4:first-child {
+    margin-top: 8%
+}
+
+.borda-baixa-cinza {
+    border-bottom: 1px solid lightgray;
+    margin: 7% 0 4% 0;
+}
+
+.borda-baixa-cinza strong {
+    float: right;
+}
+
+ion-item:last-child {
+    margin-bottom: 65px;
+}
+
+ion-icon {
+    font-size: 35px;
+    margin-bottom: -2.5%;
+    margin-right: 20%;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+.yellow {
+    color: rgb(199, 199, 26);
+}
+
+.status {
+    margin: 3% 0% 7% 5%
+}

@@ -25,4 +25,8 @@ export class ClienteService {
   alterar(cliente: Cliente) {
     return this.httpClient.put(`${environment.urlBase}/rest/cliente/alterar`, cliente);
   }
+
+  getById(id: any) {
+    return this.httpClient.get(`${environment.urlBase}/rest/cliente/getById/${id}`);
+  }
 }

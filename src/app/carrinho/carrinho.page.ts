@@ -48,7 +48,6 @@ export class CarrinhoPage {
     const c = new Cliente().deserialize(JSON.parse(logado));
     this.clienteService.getInfo(c.cpfCnpj).subscribe( res => {
       const resultado = new Resultado(new Cliente()).deserialize(res);
-      console.log(resultado);
       this.cliente = resultado.entidades[0];
     });
   }
@@ -74,7 +73,6 @@ export class CarrinhoPage {
       }
     })
     .catch( err => {
-      console.log(err);
       this.mostrarToast('Erro ao adicionar o item no carrinho. Tente novamente mais tarde').then( toast => {
         toast.present();
       });
@@ -170,7 +168,11 @@ export class CarrinhoPage {
     this.atualizarTotal(this.carrinho);
   }
 
-  irParaEndereco() {
-    this.router.navigateByUrl('carrinho/endereco');
+  login() {
+    this.router.navigateByUrl('cliente/login');
+  }
+
+  comprar() {
+
   }
 }

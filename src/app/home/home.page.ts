@@ -51,7 +51,6 @@ export class HomePage {
         const arraySorted = this.valores.sort((a, b) => {
           return a - b;
         });
-        console.log(arraySorted);
         this.min = arraySorted[0];
         this.max = arraySorted[arraySorted.length - 1];
         this.valor = this.max.toString();
@@ -101,7 +100,6 @@ export class HomePage {
       }
     })
     .catch( err => {
-      console.log(err);
       this.mostrarToast('Erro ao adicionar o item no carrinho. Tente novamente mais tarde').then( toast => {
         toast.present();
       });
@@ -125,7 +123,6 @@ export class HomePage {
   }
 
   filtrarPorCategoria(produto: Produto): boolean {
-    console.log(this.categoria);
     if (this.categoria.length !== 0) {
       return produto.categoria === this.categoria;
     }

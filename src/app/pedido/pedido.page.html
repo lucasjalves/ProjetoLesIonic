@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Meus pedidos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <app-carregando [carregando]="!apiCalled" [qtdeLinhas]="3"></app-carregando>
+  <ion-grid *ngIf="apiCalled">
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+            <ion-list-header>
+                <ion-label>Meus pedidos</ion-label>
+              </ion-list-header>
+              <ion-item *ngFor="let pedido of pedidos"> 
+                <ion-label>{{pedido.id}}</ion-label>
+              </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>
+<app-pagina-footer></app-pagina-footer>

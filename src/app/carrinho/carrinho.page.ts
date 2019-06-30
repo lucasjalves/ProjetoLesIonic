@@ -12,6 +12,8 @@ import { ModalHelper } from '../common/modal.helper';
 import { environment } from 'src/environments/environment';
 import { Cliente } from '../cliente/model/cliente.model';
 import { ClienteService } from '../cliente/service/cliente.service';
+import { PedidoService } from '../pedido/service/pedido.service';
+import { Pedido } from '../pedido/model/pedido.model';
 
 @Component({
   selector: 'app-carrinho',
@@ -31,6 +33,7 @@ export class CarrinhoPage {
   public desconto: string;
   public frete;
   public cliente: Cliente;
+  public idEndereco = '-1';
   constructor(private produtoService: ProdutoService,
               private router: Router,
               private carrinhoService: CarrinhoService,
@@ -39,7 +42,8 @@ export class CarrinhoPage {
               private alertController: AlertController,
               private loadingController: LoadingController,
               private modalHelper: ModalHelper,
-              private clienteService: ClienteService) {}
+              private clienteService: ClienteService,
+              private pedidoService: PedidoService) {}
 
   ionViewDidEnter() {
     this.carrinho = this.filtarCarrinho(this.carrinhoService.getCarrinho());
@@ -173,6 +177,13 @@ export class CarrinhoPage {
   }
 
   comprar() {
-
+    const endereco = this.cliente.enderecos.filter(e => {
+      return parseInt(e.id, 10) === parseInt(this.idEndereco, 10);
+    })[0];
+    this.carrinho.endereco = endereco;
+    this.pedidoService.confirmarPedido(this.carrinho, this.cliente.cpfCnpj).subscribe(res => {
+      const resultado = new Resultado<Pedido>(new Pedido()).deserialize(res);
+      console.log(resultado);
+    });
   }
 }

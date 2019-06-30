@@ -1,6 +1,7 @@
 import { Cupom } from '../../cupom/cupom.model';
 import { ItemCarrinho } from './item-carrinho.model';
 import { Serializable } from '../../common/serializable.interface';
+import { Endereco } from 'src/app/endereco/model/endereco.model';
 
 export class Carrinho implements Serializable<Carrinho> {
     public total: string;
@@ -8,6 +9,7 @@ export class Carrinho implements Serializable<Carrinho> {
     public desconto: string;
     public totalCompra: string;
     public cupom: Cupom = new Cupom();
+    public endereco: Endereco = new Endereco();
     public itensCarrinho: Array<ItemCarrinho> = new Array();
 
     deserialize(object: any): Carrinho {
@@ -34,6 +36,7 @@ export class Carrinho implements Serializable<Carrinho> {
             desconto: this.desconto,
             totalCompra: this.totalCompra,
             cupom: this.cupom.serialize(),
+            endereco: this.endereco.serialize(),
             itensCarrinho: objArray
         };
     }

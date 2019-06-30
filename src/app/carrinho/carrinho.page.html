@@ -101,18 +101,18 @@
               <ion-list *ngIf="cliente !== null && cliente !== undefined">
                   <ion-item *ngIf="cliente.enderecos.length > 0">
                     <ion-label>Endereços</ion-label>
-                    <ion-select okText="Okay" cancelText="Cancelar">
-                        <ion-select-option *ngFor="let endereco of cliente.enderecos" value="{{endereco.nome}}">{{endereco.nome}}</ion-select-option>
+                    <ion-select okText="Ok" [(ngModel)]="idEndereco" cancelText="Cancelar">
+                        <ion-select-option  *ngFor="let endereco of cliente.enderecos" value="{{endereco.id}}">{{endereco.nome}}</ion-select-option>
                     </ion-select>
                   </ion-item>
-                  <ion-item *ngIf="cliente.enderecos === 0">
+                  <ion-item *ngIf="cliente.enderecos.length === 0">
                       Cadastre um endereço para entrega
                   </ion-item>
                 </ion-list>
 
                 <div *ngIf="cliente === null || cliente === undefined">
                   <p><b>Logue-se primeiro para selecionar um endereço</b></p>
-                  <ion-button color="primary" expand="full" (click)="login()">Continuar</ion-button>
+                  <ion-button color="primary" expand="full" (click)="login()">Logar</ion-button>
                 </div>
           </ion-col>
           
@@ -134,6 +134,7 @@
           
       </div>
       <app-carregando [carregando]="carregando" [qtdeLinhas]="3"></app-carregando>
+      
 </ion-content>
-<ion-button color="success" *ngIf="total !== '0.00'" expand="full" (click)="comprar()">Continuar</ion-button>
+<ion-button color="success" *ngIf="total !== '0.00'" disabled="{{idEndereco === '-1'}}"expand="full" (click)="comprar()">Confirmar Pedido</ion-button>
 <app-pagina-footer></app-pagina-footer>

@@ -9,6 +9,7 @@ export class Cupom implements Serializable<Cupom> {
 
     deserialize(object: any): Cupom {
         const c =  new Cupom();
+        c.id = object.id;
         c.codigo = object.codigo;
         c.status = object.status;
         c.dataVencimento = object.dataVencimento;

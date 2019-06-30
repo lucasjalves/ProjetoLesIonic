@@ -45,7 +45,24 @@ export class Produto implements Serializable<Produto> {
     }
     serialize() {
        return {
-
+        id: this.id,
+        nome: this.nome,
+        descricao: this.descricao,
+        precoCompra: this.precoCompra,
+        precoVenda: this.precoVenda,
+        marca: this.marca,
+        modelo: this.modelo,
+        altura: this.altura,
+        detalhe: this.detalhe,
+        largura: this.largura,
+        comprimento: this.comprimento,
+        peso: this.comprimento,
+        especificacoes: this.especificacoes,
+        codigoBarras: this.codigoBarras,
+        categoria: this.categoria,
+        estoque: this.estoque,
+        conteudoEmbalagem: this.conteudoEmbalagem,
+        ativo: this.ativo
        };
     }
 

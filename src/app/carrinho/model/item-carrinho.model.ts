@@ -16,7 +16,7 @@ export class ItemCarrinho implements Serializable<ItemCarrinho> {
 
     serialize() {
         return {
-            qtde: this.qtde,
+            quantidade: this.qtde,
             produto: this.produto.serialize(),
             valorTotal: this.valorTotal
         };

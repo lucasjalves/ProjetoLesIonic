@@ -22,7 +22,6 @@ export class Pedido implements Serializable<Pedido> {
     public trocado: boolean;
 
     deserialize(object: any): Pedido {
-       
         const p = new Pedido();
         p.id = object.id;
         p.status = object.status;

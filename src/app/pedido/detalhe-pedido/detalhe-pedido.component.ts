@@ -39,6 +39,7 @@ export class DetalhePedidoComponent implements OnInit {
       color: 'yellow'
     }
   };
+  public cartoesSelecionados;
   public apiCalled = false;
   public pedido = new Pedido();
   public cliente: Cliente = new Cliente();

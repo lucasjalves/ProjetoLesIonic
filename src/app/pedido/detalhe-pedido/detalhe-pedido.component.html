@@ -69,6 +69,21 @@
           <p><b>{{pedido.endereco.uf}}, {{pedido.endereco.pais}}</b></p>
         </ion-col>
       </ion-row>
+      <h4 *ngIf="pedido.status === 'SOLICITADO'" class="no-margin-bottom">Pagamento</h4>
+      <ion-row *ngIf="pedido.status === 'SOLICITADO'" class="sombra-leve">
+
+      <ion-list style="margin-bottom: 0px;">
+        <ion-item>
+            <ion-label>Cartões</ion-label>
+          <ion-select [(ngModel)]="cartoesSelecionados" multiple="true" cancelText="Cancelar" okText="Ok">
+            <ion-select-option *ngFor="let cartao of cliente.cartoes" value="{{cartao.id}}">{{cartao.bandeira}}({{cartao.numero.substring(12)}})</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      </ion-row>      
   </ion-grid>
+  <ion-button *ngIf="pedido.status === 'SOLICITADO'" expand="full" (click)="finalizarCompra()">Finalizar compra</ion-button>
+  <ion-button *ngIf="pedido.status === 'PAGO'" color="danger" expand="full" (click)="cancelar()">Cancelar</ion-button>
+  <ion-button *ngIf="pedido.status === 'ENTREGUE'" color="danger" expand="full" (click)="trocar()">Trocar</ion-button>
 </ion-content>
 <app-pagina-footer></app-pagina-footer>

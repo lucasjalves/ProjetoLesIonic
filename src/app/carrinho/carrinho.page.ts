@@ -209,6 +209,7 @@ export class CarrinhoPage {
         });
       }
     }, err => {
+      loading.dismiss();
       this.modalHelper.mostrarModal(this.alertController, 'Erro', 'Sistema indisponível. Tente novamente mais tarde')
       .then(modal => {
         modal.present();

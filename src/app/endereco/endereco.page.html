@@ -23,7 +23,7 @@
                 <ion-list-header>
                     <ion-label>Endereços</ion-label>
                   </ion-list-header>
-                <ion-item-sliding  *ngFor="let endereco of enderecos">
+                <ion-item-sliding  *ngFor="let endereco of enderecos" (click)="alterar(endereco)">
                   <ion-item style="padding-bottom: 15px;">
                     <ion-label>{{endereco.nome}}</ion-label>
                     <ion-text>CEP -- {{endereco.cep}} </ion-text>

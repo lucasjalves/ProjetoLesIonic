@@ -19,8 +19,8 @@
             <ion-list-header>
                 <ion-label>Meus pedidos</ion-label>
               </ion-list-header>
-              <ion-item *ngFor="let pedido of pedidos"> 
-                <ion-label>{{pedido.id}}</ion-label>
+              <ion-item *ngFor="let pedido of pedidos" (click)="irParaDetalhe(pedido.id)"> 
+                <ion-label>{{pedido.dtPedido}}&nbsp;&nbsp;R${{pedido.totalCompra}}&nbsp;&nbsp;({{pedido.status}})   </ion-label>
               </ion-item>
           </ion-list>
         </ion-col>

@@ -23,7 +23,7 @@
             <ion-list-header>
                 <ion-label>Cartões de crédito</ion-label>
               </ion-list-header>
-            <ion-item-sliding  *ngFor="let cartao of cartoes">
+            <ion-item-sliding  *ngFor="let cartao of cartoes" (click)="alterar(cartao)">
               <ion-item style="padding-bottom: 15px;">
                 <ion-label>{{cartao.bandeira}}</ion-label>
                 <ion-text>Final -- {{cartao.numero.substring(cartao.numero.length -4)}}</ion-text>

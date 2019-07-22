@@ -21,4 +21,12 @@ export class PedidoService {
   consultarById(id: string) {
     return this.httpClient.get(`${environment.urlBase}/rest/pedido/get/${id}`);
   }
+
+  efetivarPedido(id: number, cartoes: any) {
+    return this.httpClient.post(`${environment.urlBase}/rest/pedido/efetivar/${id}`, cartoes);
+  }
+
+  cancelar(idPedido: number, idCliente: number) {
+    return this.httpClient.get(`${environment.urlBase}/rest/pedido/cancelar/${idPedido}?idCliente=${idCliente}`);
+  }
 }

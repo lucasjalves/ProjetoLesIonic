@@ -9,6 +9,7 @@ export class Pedido implements Serializable<Pedido> {
     public id: number;
     public itemPedido: Array<ItemPedido> = new Array();
     public status: string;
+    public hora: string;
     public dtPedido: string;
     public total: string;
     public frete: string;
@@ -26,6 +27,7 @@ export class Pedido implements Serializable<Pedido> {
         p.id = object.id;
         p.status = object.status;
         p.dtPedido = object.dtPedido;
+        p.hora = object.hora;
         p.total = object.total;
         p.frete = object.frete;
         p.desconto = object.desconto;

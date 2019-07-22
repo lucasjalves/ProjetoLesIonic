@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { PedidoClientePage } from './pedido.page';
 import { SharedModules } from '../modules/shared-modules.module';
 import { DetalhePedidoComponent } from './detalhe-pedido/detalhe-pedido.component';
+import { PedidoEfetivacaoComponent } from './pedido-efetivacao/pedido-efetivacao.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'detalhe',
     component: DetalhePedidoComponent
+  },
+  {
+    path: 'efetivar',
+    component: PedidoEfetivacaoComponent
   }
 ];
 
@@ -28,6 +33,6 @@ const routes: Routes = [
     SharedModules,
     RouterModule.forChild(routes)
   ],
-  declarations: [PedidoClientePage, DetalhePedidoComponent]
+  declarations: [PedidoClientePage, DetalhePedidoComponent, PedidoEfetivacaoComponent]
 })
 export class PedidoPageModule {}

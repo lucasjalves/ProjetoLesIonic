@@ -9,6 +9,7 @@ import { PedidoClientePage } from './pedido.page';
 import { SharedModules } from '../modules/shared-modules.module';
 import { DetalhePedidoComponent } from './detalhe-pedido/detalhe-pedido.component';
 import { PedidoEfetivacaoComponent } from './pedido-efetivacao/pedido-efetivacao.component';
+import { PedidoTrocaComponent } from './pedido-troca/pedido-troca.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'efetivar',
     component: PedidoEfetivacaoComponent
+  },
+  {
+    path: 'trocar',
+    component: PedidoTrocaComponent
   }
 ];
 
@@ -33,6 +38,7 @@ const routes: Routes = [
     SharedModules,
     RouterModule.forChild(routes)
   ],
-  declarations: [PedidoClientePage, DetalhePedidoComponent, PedidoEfetivacaoComponent]
+  declarations: [PedidoClientePage, DetalhePedidoComponent,
+    PedidoEfetivacaoComponent, PedidoTrocaComponent]
 })
 export class PedidoPageModule {}

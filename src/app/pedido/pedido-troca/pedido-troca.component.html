@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Pedido #{{pedido.id}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  
+  <app-carregando [carregando]="!apiCalled" [qtdeLinhas]="3"></app-carregando>
+  <div *ngIf="apiCalled">
+    <form #f="ngForm">
+    <ion-card class="sombra-leve">
+      <ion-card-header>
+
+        <ion-card-subtitle>Troca</ion-card-subtitle>
+        <ion-card-title>Selecione itens para troca</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+
+          <ion-list>
+              <ion-item *ngFor="let item of pedido.itemPedido">
+                <div style="display: inline-block; width: 100%">
+                  <b style="margin-right: 10%">{{item.quantidade}}x</b>
+                  <span>{{item.produtoPedido.modelo}}</span>
+                  <span style="float:right">    
+                    <ion-label>Qtde</ion-label>
+                    <ion-select placeholder="Qtde" required pattern="^[1-9]\d*$" ngModel>
+                      
+                      <ion-select-option *ngFor="let cont of [].constructor(item.quantidade + 1); let i = index" value="{{i}}">{{i}}</ion-select-option>
+
+                    </ion-select>
+                  </span>
+                </div>
+              </ion-item>
+          </ion-list>
+          <ion-label position="stacked">Motivo(opcional)</ion-label>
+          <ion-textarea rows="6" cols="20" placeholder="Diga o motivo...."></ion-textarea>
+
+      </ion-card-content>
+
+    </ion-card>    
+    <ion-button expand="full" (click)="finalizarPedido()" disabled="{{!f.valid}}">Efetivar troca</ion-button>
+  </form>
+  </div>
+ 
+</ion-content>
+<app-pagina-footer></app-pagina-footer>

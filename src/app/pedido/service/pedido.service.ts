@@ -29,4 +29,8 @@ export class PedidoService {
   cancelar(idPedido: number, idCliente: number) {
     return this.httpClient.get(`${environment.urlBase}/rest/pedido/cancelar/${idPedido}?idCliente=${idCliente}`);
   }
+
+  trocar(idPedido: number, idCliente: number) {
+    return this.httpClient.get(`${environment.urlBase}/rest/pedido/trocar/${idPedido}?idCliente=${idCliente}`);
+  }
 }

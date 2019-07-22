@@ -142,4 +142,11 @@ export class DetalhePedidoComponent implements OnInit {
       });
     });
   }
+  trocar() {
+    this.router.navigate(['/pedido/trocar'], {
+      queryParams: {
+        id: this.pedido.id
+      }
+    });
+  }
 }

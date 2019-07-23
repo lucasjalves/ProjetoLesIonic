@@ -31,7 +31,7 @@
                   <span>{{item.produtoPedido.modelo}}</span>
                   <span style="float:right">    
                     <ion-label>Qtde</ion-label>
-                    <ion-select placeholder="Qtde" required pattern="^[1-9]\d*$" ngModel>
+                    <ion-select placeholder="Qtde" pattern="^[1-9]\d*$" ngModel>
                       
                       <ion-select-option *ngFor="let cont of [].constructor(item.quantidade + 1); let i = index" value="{{i}}">{{i}}</ion-select-option>
 

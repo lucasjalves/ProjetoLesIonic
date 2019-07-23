@@ -20,7 +20,8 @@ export const routes: Routes = [
   { path: 'cliente', loadChildren: './cliente/cliente.module#ClientePageModule' },
   { path: 'produto', loadChildren: './produto/produto.module#ProdutoModule'},
   { path: 'carrinho', loadChildren: './carrinho/carrinho.module#CarrinhoPageModule' },
-  { path: 'pedido', loadChildren: './pedido/pedido.module#PedidoPageModule' }
+  { path: 'pedido', loadChildren: './pedido/pedido.module#PedidoPageModule' },  { path: 'ticket', loadChildren: './ticket/ticket.module#TicketPageModule' }
+
 
 
 

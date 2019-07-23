@@ -29,4 +29,10 @@ export class ClienteService {
   getById(id: any) {
     return this.httpClient.get(`${environment.urlBase}/rest/cliente/getById/${id}`);
   }
+
+  getClienteLogado(): Cliente {
+    const stringCliente = localStorage.getItem('logged');
+    const jsonCliente = JSON.parse(stringCliente);
+    return new Cliente().deserialize(jsonCliente);
+  }
 }

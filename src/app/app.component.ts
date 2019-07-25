@@ -28,7 +28,7 @@ export class AppComponent {
     },
     {
       title: 'Tickets',
-      url: '/cliente/tickets',
+      url: '/ticket',
       icon: 'list-box'
     },
     {

@@ -25,15 +25,15 @@
       <ion-card-content>
 
           <ion-list>
-              <ion-item *ngFor="let item of pedido.itemPedido">
+              <ion-item *ngFor="let item of pedido.itemPedido; let i = index">
                 <div style="display: inline-block; width: 100%">
                   <b style="margin-right: 10%">{{item.quantidade}}x</b>
                   <span>{{item.produtoPedido.modelo}}</span>
                   <span style="float:right">    
                     <ion-label>Qtde</ion-label>
-                    <ion-select placeholder="Qtde" pattern="^[1-9]\d*$" ngModel>
+                    <ion-select [ngModelOptions]="{standalone: true}" (ionChange)="verificarFormValido()" placeholder="Qtde" pattern="^[1-9]\d*$" [(ngModel)]="ticket.itens[i].quantidade">
                       
-                      <ion-select-option *ngFor="let cont of [].constructor(item.quantidade + 1); let i = index" value="{{i}}">{{i}}</ion-select-option>
+                        <ion-select-option  *ngFor="let cont of [].constructor(item.quantidade + 1); let i = index" value="{{i}}">{{i}}</ion-select-option>
 
                     </ion-select>
                   </span>
@@ -46,9 +46,9 @@
       </ion-card-content>
 
     </ion-card>    
-    <ion-button expand="full" (click)="finalizarPedido()" disabled="{{!f.valid}}">Efetivar troca</ion-button>
+    <ion-button expand="full" (click)="efetivarTroca()" disabled="{{isInvalid}}">Efetivar troca</ion-button>
   </form>
   </div>
- 
+
 </ion-content>
 <app-pagina-footer></app-pagina-footer>

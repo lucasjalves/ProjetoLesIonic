@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { TicketClienteComponent } from './ticket.page';
-
+import { SharedModules } from '../modules/shared-modules.module';
 const routes: Routes = [
   {
     path: '',
@@ -19,6 +19,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    SharedModules,
     RouterModule.forChild(routes)
   ],
   declarations: [TicketClienteComponent]

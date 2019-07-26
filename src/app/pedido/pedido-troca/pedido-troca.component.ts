@@ -38,6 +38,9 @@ export class PedidoTrocaComponent implements OnInit {
     this.pedido.itemPedido.forEach( (item, index) => {
       this.ticket.itens.push(new ItemPedidoTiket());
     });
+
+    this.ticket.idPedido = this.pedido.id;
+    this.ticket.idCliente = this.pedido.idCliente;
   }
 
   efetivarTroca() {

@@ -10,23 +10,28 @@ import { SharedModules } from '../modules/shared-modules.module';
 import { DetalhePedidoComponent } from './detalhe-pedido/detalhe-pedido.component';
 import { PedidoEfetivacaoComponent } from './pedido-efetivacao/pedido-efetivacao.component';
 import { PedidoTrocaComponent } from './pedido-troca/pedido-troca.component';
+import { ActiveGuard } from '../guards/active.guard';
 
 const routes: Routes = [
   {
     path: 'cliente',
-    component: PedidoClientePage
+    component: PedidoClientePage,
+    canActivate: [ActiveGuard]
   },
   {
     path: 'detalhe',
-    component: DetalhePedidoComponent
+    component: DetalhePedidoComponent,
+    canActivate: [ActiveGuard]
   },
   {
     path: 'efetivar',
-    component: PedidoEfetivacaoComponent
+    component: PedidoEfetivacaoComponent,
+    canActivate: [ActiveGuard]
   },
   {
     path: 'trocar',
-    component: PedidoTrocaComponent
+    component: PedidoTrocaComponent,
+    canActivate: [ActiveGuard]
   }
 ];
 

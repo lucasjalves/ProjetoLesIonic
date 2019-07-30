@@ -22,7 +22,7 @@ export class DetalhePedidoComponent implements OnInit {
       color: 'yellow'
     },
     PAGO: {
-      icone: 'time',
+      icone: 'clock',
       color: 'green'
     },
     TRANSPORTE: {

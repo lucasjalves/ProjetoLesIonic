@@ -2,12 +2,14 @@ import { Serializable } from 'src/app/common/serializable.interface';
 import { ProdutoPedido } from './produto-pedido.model';
 
 export class ItemPedido implements Serializable<ItemPedido> {
+    public id: number;
     public produtoPedido: ProdutoPedido;
     public valorTotal: string;
     public quantidade: number;
 
     deserialize(object: any): ItemPedido {
         const item: ItemPedido = new ItemPedido();
+        item.id = object.id;
         item.produtoPedido = new ProdutoPedido().deserialize(object.produto);
         item.valorTotal = object.valorTotal;
         item.quantidade = object.quantidade;

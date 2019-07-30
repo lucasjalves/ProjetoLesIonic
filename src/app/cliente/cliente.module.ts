@@ -11,11 +11,13 @@ import { ClienteFormComponent } from './form/form.page';
 import { CadastroClienteComponent } from './cadastro-cliente/cadastro-cliente.component';
 import { AlterarClienteComponent } from './alterar-cliente/alterar-cliente.component';
 import { LoginComponent } from './login/login.page';
+import { ActiveGuard } from '../guards/active.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: ClientePage
+    component: ClientePage,
+    canActivate: [ActiveGuard]
   },
   {
     path: 'cadastro',
@@ -23,7 +25,8 @@ const routes: Routes = [
   },
   {
     path: 'alterar',
-    component: AlterarClienteComponent
+    component: AlterarClienteComponent,
+    canActivate: [ActiveGuard]
   },
   {
     path: 'login',

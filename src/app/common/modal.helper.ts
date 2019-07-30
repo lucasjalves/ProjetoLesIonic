@@ -1,13 +1,14 @@
 import { AlertController } from '@ionic/angular';
 import { Resultado } from './resultado.model';
 import { Injectable } from '@angular/core';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
     providedIn: 'root'
 })
 export class ModalHelper {
 
-    async mostrarModal(alertController: AlertController, titulo: string, msg: string, resultado?: Resultado<any>, funcao?: () => void) {
+    async mostrarModal(alertController: AlertController, titulo = 'Erro', msg = environment.msg_erro,
+                       resultado?: Resultado<any>, funcao?: () => void) {
         if (resultado === undefined || resultado === null) {
             return alertController.create({
                 header: titulo,

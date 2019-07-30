@@ -7,10 +7,18 @@ import { IonicModule } from '@ionic/angular';
 
 import { TicketClienteComponent } from './ticket.page';
 import { SharedModules } from '../modules/shared-modules.module';
+import { TicketEfetivacaoComponent } from './ticket-efetivacao/ticket-efetivacao.component';
+import { ActiveGuard } from '../guards/active.guard';
 const routes: Routes = [
   {
     path: '',
-    component: TicketClienteComponent
+    component: TicketClienteComponent,
+    canActivate: [ActiveGuard]
+  },
+  {
+    path: 'efetivar',
+    component: TicketEfetivacaoComponent,
+    canActivate: [ActiveGuard]
   }
 ];
 
@@ -22,6 +30,6 @@ const routes: Routes = [
     SharedModules,
     RouterModule.forChild(routes)
   ],
-  declarations: [TicketClienteComponent]
+  declarations: [TicketClienteComponent, TicketEfetivacaoComponent]
 })
 export class TicketPageModule {}

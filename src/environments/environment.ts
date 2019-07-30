@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   urlBase: 'http://localhost:8888',
   taxa_divisao: 50,
-  taxa_fixa_frete: 5.00
+  taxa_fixa_frete: 5.00,
+  msg_erro: 'Sistema temporariamente indisponível. Tente novamente mais tarde'
 };
 
 /*

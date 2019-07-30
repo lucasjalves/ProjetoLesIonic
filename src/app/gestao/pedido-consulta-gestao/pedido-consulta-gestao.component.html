@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Meus tickets
+      Todos os Pedidos
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -17,10 +17,10 @@
       <ion-col size="12">
         <ion-list>
             <ion-list-header>
-                <ion-label>Meus tickets</ion-label>
+                <ion-label>Todos os pedidos</ion-label>
               </ion-list-header>
-              <ion-item *ngFor="let ticket of tickets" (click)="irParaDetalhe(ticket.id)"> 
-                <ion-label>#{{ticket.id}}&nbsp;&nbsp;{{ticket.dtPedido}}&nbsp;&nbsp;({{ticket.status}})   </ion-label>
+              <ion-item *ngFor="let pedido of pedidos" (click)="irParaDetalhe(pedido.id)"> 
+                <ion-label>{{pedido.dtPedido}}&nbsp;&nbsp;R${{pedido.totalCompra}}&nbsp;&nbsp;({{pedido.status}})   </ion-label>
               </ion-item>
           </ion-list>
         </ion-col>

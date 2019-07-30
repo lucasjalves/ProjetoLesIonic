@@ -10,19 +10,24 @@ import { SharedModules } from '../modules/shared-modules.module';
 import { CartaoCadastroComponent } from './cadastro/cartao-cadastro.component';
 import { AlterarCartaoComponent } from './alterar/alterar.component';
 import { FormCartaoComponent } from './form/form.component';
+import { ActiveGuard } from '../guards/active.guard';
+import { CanActivate } from '@angular/router/src/utils/preactivation';
 
 const routes: Routes = [
   {
     path: '',
-    component: CartaoListaPage
+    component: CartaoListaPage,
+    canActivate: [ActiveGuard]
   },
   {
     path: 'cadastro',
-    component: CartaoCadastroComponent
+    component: CartaoCadastroComponent,
+    canActivate: [ActiveGuard]
   },
   {
     path: 'alterar',
-    component: AlterarCartaoComponent
+    component: AlterarCartaoComponent,
+    canActivate: [ActiveGuard]
   }
 ];
 

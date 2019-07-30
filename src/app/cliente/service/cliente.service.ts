@@ -35,4 +35,12 @@ export class ClienteService {
     const jsonCliente = JSON.parse(stringCliente);
     return new Cliente().deserialize(jsonCliente);
   }
+
+  isActive(cpf: string) {
+    return this.httpClient.get(`${environment.urlBase}/rest/cliente/isActive/${cpf}`);
+  }
+
+  isAdmin(cpf: string) {
+    return this.httpClient.get(`${environment.urlBase}/rest/cliente/isAdmin/${cpf}`);
+  }
 }

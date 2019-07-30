@@ -41,8 +41,25 @@
               </ion-item>
           </ion-list>
           <ion-label position="stacked">Motivo(opcional)</ion-label>
-          <ion-textarea rows="6" cols="20" [(ngModel)]="ticket.obs" placeholder="Diga o motivo...."></ion-textarea>
+          <ion-textarea class="sombra-leve" rows="6" cols="20" name="obs" [(ngModel)]="ticket.obs" placeholder="Diga o motivo...."></ion-textarea>
 
+          <ion-list>
+            <ion-radio-group name="tipoTicket" ([ngModel])="ticket.tipo">
+              <ion-list-header>
+                <ion-label>Selecione o tipo de troca</ion-label>
+              </ion-list-header>
+          
+              <ion-item>
+                <ion-label>Devolução</ion-label>
+                <ion-radio slot="start" value="DEVOLUCAO" (click)="alterarTipoTicket('DEVOLUCAO')" checked></ion-radio>
+              </ion-item>
+          
+              <ion-item>
+                <ion-label>Troca</ion-label>
+                <ion-radio slot="start" value="TROCA"  (click)="alterarTipoTicket('TROCA')"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
       </ion-card-content>
 
     </ion-card>    

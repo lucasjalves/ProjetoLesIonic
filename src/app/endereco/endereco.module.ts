@@ -11,19 +11,23 @@ import { FormEnderecoComponent } from './form-endereco/form-endereco.component';
 import { CadastroEnderecoComponent } from './cadastro/cadastro-endereco/cadastro-endereco.component';
 import { AlterarCartaoComponent } from '../cartao/alterar/alterar.component';
 import { AlterarEnderecoComponent } from './alterar/alterar-endereco/alterar-endereco.component';
+import { ActiveGuard } from '../guards/active.guard';
 
 const routes: Routes = [
   {
     path: 'listar',
-    component: EnderecoListaPage
+    component: EnderecoListaPage,
+    canActivate: [ActiveGuard]
   },
   {
     path: 'cadastrar',
-    component: CadastroEnderecoComponent
+    component: CadastroEnderecoComponent,
+    canActivate: [ActiveGuard]
   },
   {
     path: 'alterar',
-    component: AlterarEnderecoComponent
+    component: AlterarEnderecoComponent,
+    canActivate: [ActiveGuard]
   }
 ];
 

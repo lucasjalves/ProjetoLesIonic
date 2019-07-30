@@ -5,8 +5,8 @@ export class Ticket implements Serializable<Ticket> {
     public id: number;
     public dtPedido: string;
     public hora: string;
-    public statusTicket: string;
-    public tipoTicket: string;
+    public status: string;
+    public tipo: string;
     public idCliente: number;
     public idPedido: number;
     public obs: string;
@@ -17,8 +17,8 @@ export class Ticket implements Serializable<Ticket> {
         ticket.id = object.id;
         ticket.dtPedido = object.dtPedido;
         ticket.hora = object.hora;
-        ticket.statusTicket = object.statusTicket;
-        ticket.tipoTicket = object.tipoTicket;
+        ticket.status = object.status;
+        ticket.tipo = object.tipo;
         ticket.idCliente = object.idCliente;
         ticket.idPedido = object.idPedido;
         ticket.obs = object.obs;

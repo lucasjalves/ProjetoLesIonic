@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Ticket #{{ticket.id}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <app-carregando [carregando]="!apiCalled" [qtdeLinhas]="3"></app-carregando>
+  <div *ngIf="apiCalled">
+    <ion-card  class="sombra-leve" id="conteudo-msg">
+      <ion-card-content>
+        <div>
+          <ion-icon name="checkbox"></ion-icon>
+          <span>Ticket gerado com sucesso em {{ticket.dtPedido}} às {{ticket.hora}}</span>
+        </div>
+        <div style="margin-top: 20px;">
+          <span (click)="irParaDetalhe()" class="link-pedido">Você pode acompanhar o status do seu ticket aqui.</span>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>
+<app-pagina-footer></app-pagina-footer>

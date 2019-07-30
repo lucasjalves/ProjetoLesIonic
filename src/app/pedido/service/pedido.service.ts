@@ -33,4 +33,8 @@ export class PedidoService {
   trocar(idPedido: number, idCliente: number) {
     return this.httpClient.get(`${environment.urlBase}/rest/pedido/trocar/${idPedido}?idCliente=${idCliente}`);
   }
+
+  consultarTodos() {
+    return this.httpClient.get(`${environment.urlBase}/rest/pedidos/todos`);
+  }
 }

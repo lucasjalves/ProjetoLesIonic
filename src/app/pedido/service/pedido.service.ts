@@ -34,7 +34,11 @@ export class PedidoService {
     return this.httpClient.get(`${environment.urlBase}/rest/pedido/trocar/${idPedido}?idCliente=${idCliente}`);
   }
 
+  atualizarStatusPara(status: string, id: number) {
+    return this.httpClient.patch(`${environment.urlBase}/rest/pedido/update/status/${id}?status=${status}`, {});
+  }
+
   consultarTodos() {
-    return this.httpClient.get(`${environment.urlBase}/rest/pedidos/todos`);
+    return this.httpClient.get(`${environment.urlBase}/rest/pedido/todos`);
   }
 }

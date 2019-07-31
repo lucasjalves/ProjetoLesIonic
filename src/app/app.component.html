@@ -7,7 +7,7 @@
         </ion-toolbar>
       </ion-header>
       <ion-content>
-        <ion-list  *ngIf="logged != null">
+        <ion-list  *ngIf="logged != null && isActive">
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
             <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
               <ion-icon slot="start" style="color: lightslategray;"[name]="p.icon"></ion-icon>
@@ -16,8 +16,22 @@
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
+          <div class="area-texto-funcao-administrativa" *ngIf="isAdmin">
+            <span>Funções administrativas</span>
+          </div>
+          <div *ngIf="isAdmin">
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPagesAdmin">
+              <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+                <ion-icon slot="start" style="color: lightslategray;"[name]="p.icon"></ion-icon>
+                <ion-label>
+                  {{p.title}}
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </div>
+
         </ion-list>
-        <ion-list  *ngIf="logged == null">
+        <ion-list  *ngIf="logged == null || !isActive">
             <ion-menu-toggle auto-hide="false" *ngFor="let p of appPagesNotLogged">
               <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
                 <ion-icon slot="start"style="color: lightslategray;" [name]="p.icon"></ion-icon>

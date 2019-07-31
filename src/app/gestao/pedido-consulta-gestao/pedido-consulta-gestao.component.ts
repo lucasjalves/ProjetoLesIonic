@@ -20,6 +20,7 @@ export class PedidoConsultaGestaoComponent implements OnInit {
 
   ionViewDidEnter() {
     this.pedidoService.consultarTodos().subscribe(res => {
+      this.apiCalled = true;
       const resultado = new Resultado(new Pedido()).deserialize(res);
       this.pedidos = resultado.entidades;
     });

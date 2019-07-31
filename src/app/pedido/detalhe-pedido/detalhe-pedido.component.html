@@ -85,5 +85,7 @@
   <ion-button *ngIf="pedido.status === 'SOLICITADO'" expand="full" (click)="finalizarPedido()" disabled="{{cartoesSelecionados === null ? true : cartoesSelecionados.length > 0 ? false : true}}">Finalizar compra</ion-button>
   <ion-button *ngIf="pedido.status === 'PAGO'" color="danger" expand="full" (click)="cancelar()">Cancelar</ion-button>
   <ion-button *ngIf="pedido.status === 'ENTREGUE'" color="warning" expand="full" (click)="trocar()">Trocar</ion-button>
+  <ion-button *ngIf="pedido.status === 'PAGO' && admin" color="success" expand="full" (click)="enviar()">Enviar</ion-button>
+
 </ion-content>
 <app-pagina-footer></app-pagina-footer>

@@ -5,11 +5,13 @@ import { IonicModule } from '@ionic/angular';
 import { SharedModules } from '../modules/shared-modules.module';
 import { RouterModule, Routes } from '@angular/router';
 import { PedidoConsultaGestaoComponent } from './pedido-consulta-gestao/pedido-consulta-gestao.component';
+import { AdminGuard } from '../guards/admin.guard';
 
 const routes: Routes = [
   {
-    path: '',
-    component: PedidoConsultaGestaoComponent
+    path: 'pedidos',
+    component: PedidoConsultaGestaoComponent,
+    canActivate: [AdminGuard]
   }
 ];
 

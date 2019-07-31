@@ -46,6 +46,8 @@ export class DetalhePedidoComponent implements OnInit {
   public apiCalled = false;
   public pedido = new Pedido();
   public cliente: Cliente = new Cliente();
+  public admin = false;
+  public idPedido = 0;
   constructor(private activedRoute: ActivatedRoute,
               private pedidoService: PedidoService,
               private clienteService: ClienteService,
@@ -58,6 +60,8 @@ export class DetalhePedidoComponent implements OnInit {
 
   ionViewDidEnter() {
     this.activedRoute.queryParams.subscribe( params => {
+      this.idPedido  = params.id as number;
+      this.admin = params.admin as boolean;
       this.pedidoService.consultarById(params.id).subscribe(res => {
         const resultado = new Resultado<Pedido>(new Pedido()).deserialize(res);
         this.pedido = resultado.entidades[0];
@@ -147,6 +151,25 @@ export class DetalhePedidoComponent implements OnInit {
       queryParams: {
         id: this.pedido.id
       }
+    });
+  }
+
+  async enviar() {
+    const loading = await this.loadingController.create({
+      message: 'Carregando...'
+    });
+
+    loading.present();
+    this.pedidoService.atualizarStatusPara('ENTREGUE', this.idPedido).subscribe(res => {
+      const resultado = new Resultado(this.pedido).deserialize(res);
+      this.pedido = resultado.entidades[0];
+      loading.dismiss();
+      if (resultado.mensagens.length > 0) {
+        this.modalHelper.mostrarModal(this.alertController, '', '', resultado).then(modal => modal.present());
+      }
+    }, err => {
+      loading.dismiss();
+      this.modalHelper.mostrarModal(this.alertController).then(modal => modal.present());
     });
   }
 }

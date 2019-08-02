@@ -6,11 +6,17 @@ import { SharedModules } from '../modules/shared-modules.module';
 import { RouterModule, Routes } from '@angular/router';
 import { PedidoConsultaGestaoComponent } from './pedido-consulta-gestao/pedido-consulta-gestao.component';
 import { AdminGuard } from '../guards/admin.guard';
+import { TicketConsultaGestaoComponent } from './ticket-consulta/ticket-consulta.component';
 
 const routes: Routes = [
   {
     path: 'pedidos',
     component: PedidoConsultaGestaoComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'tickets',
+    component: TicketConsultaGestaoComponent,
     canActivate: [AdminGuard]
   }
 ];
@@ -24,6 +30,6 @@ const routes: Routes = [
     SharedModules,
     RouterModule.forChild(routes)
   ],
-  declarations: [PedidoConsultaGestaoComponent]
+  declarations: [PedidoConsultaGestaoComponent, TicketConsultaGestaoComponent]
 })
 export class GestaoModule { }

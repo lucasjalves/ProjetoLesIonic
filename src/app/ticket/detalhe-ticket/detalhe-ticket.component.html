@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Ticket #{{pedido.id}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <app-carregando [carregando]="!apiCalled" [qtdeLinhas]="3"></app-carregando>
+  <ion-grid *ngIf="apiCalled">
+    <div class="status">
+      <ion-icon name="{{mapIcones[ticket.status].icone}}" class="{{mapIcones[ticket.status].color}}"></ion-icon>
+      <span>ticket em {{ticket.status}}</span>
+    </div>
+      <h4>Itens do ticket</h4>
+    <ion-row class="sombra-leve">
+      <ion-col size="12">
+      
+        <ion-list>
+              <ion-item *ngFor="let item of pedido.itemPedido">
+                <div style="display: inline-block; width: 100%">
+                  <b style="margin-right: 10%">{{item.quantidade}}x</b>
+                  <span>{{item.produtoPedido.modelo}}</span>
+                  <span style="float:right">R$ {{item.produtoPedido.precoVenda}}</span>
+                </div>
+              </ion-item>
+          </ion-list>
+      </ion-col>
+      </ion-row>
+      <h4 class="no-margin-bottom">Motivo</h4>
+      <ion-row class="sombra-leve">
+        <p><b>{{ticket.obs}}</b></p>
+      </ion-row>
+  
+  </ion-grid>
+</ion-content>
+<app-pagina-footer></app-pagina-footer>

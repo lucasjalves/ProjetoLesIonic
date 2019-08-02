@@ -21,4 +21,8 @@ export class TicketService {
   buscarPorId(id: any) {
     return this.httpClient.get(`${environment.urlBase}/rest/ticket/get/${id}`);
   }
+
+  consultarTodos() {
+    return this.httpClient.get(`${environment.urlBase}/rest/ticket/todos`);
+  }
 }

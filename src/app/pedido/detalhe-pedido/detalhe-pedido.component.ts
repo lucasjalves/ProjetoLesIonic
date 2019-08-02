@@ -5,7 +5,6 @@ import { ClienteService } from 'src/app/cliente/service/cliente.service';
 import { Pedido } from '../model/pedido.model';
 import { Resultado } from 'src/app/common/resultado.model';
 import { Cliente } from 'src/app/cliente/model/cliente.model';
-import { CartaoPedido } from '../model/cartao-pedido.model';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { ModalHelper } from 'src/app/common/modal.helper';
 

@@ -9,6 +9,7 @@ import { TicketClienteComponent } from './ticket.page';
 import { SharedModules } from '../modules/shared-modules.module';
 import { TicketEfetivacaoComponent } from './ticket-efetivacao/ticket-efetivacao.component';
 import { ActiveGuard } from '../guards/active.guard';
+import { TicketDetalheComponent } from './detalhe-ticket/detalhe-ticket.component';
 const routes: Routes = [
   {
     path: '',
@@ -18,6 +19,11 @@ const routes: Routes = [
   {
     path: 'efetivar',
     component: TicketEfetivacaoComponent,
+    canActivate: [ActiveGuard]
+  },
+  {
+    path: 'detalhe',
+    component: TicketDetalheComponent,
     canActivate: [ActiveGuard]
   }
 ];
@@ -30,6 +36,6 @@ const routes: Routes = [
     SharedModules,
     RouterModule.forChild(routes)
   ],
-  declarations: [TicketClienteComponent, TicketEfetivacaoComponent]
+  declarations: [TicketClienteComponent, TicketEfetivacaoComponent, TicketDetalheComponent]
 })
 export class TicketPageModule {}

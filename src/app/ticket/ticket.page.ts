@@ -4,6 +4,7 @@ import { Ticket } from './model/ticket.model';
 import { Cliente } from '../cliente/model/cliente.model';
 import { ClienteService } from '../cliente/service/cliente.service';
 import { Resultado } from '../common/resultado.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ticket',
@@ -16,7 +17,8 @@ export class TicketClienteComponent implements OnInit {
   public cliente: Cliente = new Cliente();
   public apiCalled = false;
   constructor(private ticketService: TicketService,
-              private clienteService: ClienteService) { }
+              private clienteService: ClienteService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -27,6 +29,14 @@ export class TicketClienteComponent implements OnInit {
       this.apiCalled = true;
       const resultado = new Resultado(new Ticket()).deserialize(res);
       this.tickets = resultado.entidades;
+    });
+  }
+
+  irParaDetalhe(idTicket) {
+    this.router.navigate(['/ticket/detalhe'], {
+      queryParams: {
+        id: idTicket
+      }
     });
   }
 }

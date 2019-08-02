@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Todos tickets
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <app-carregando [carregando]="!apiCalled" [qtdeLinhas]="3"></app-carregando>
+  <ion-grid *ngIf="apiCalled">
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+            <ion-list-header>
+                <ion-label>Todos tickets</ion-label>
+              </ion-list-header>
+              <ion-item *ngFor="let ticket of tickets" (click)="irParaDetalhe(ticket.id)"> 
+                <ion-label>#{{ticket.id}}&nbsp;&nbsp;{{ticket.dtPedido}}&nbsp;&nbsp;({{ticket.status}})   </ion-label>
+              </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>
+<app-pagina-footer></app-pagina-footer>

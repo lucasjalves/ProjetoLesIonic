@@ -25,11 +25,13 @@ export class TicketClienteComponent implements OnInit {
 
   ionViewDidEnter() {
     this.cliente = this.clienteService.getClienteLogado();
-    this.ticketService.consultarTodosTicketsCliente(this.cliente.cpfCnpj).subscribe( res => {
-      this.apiCalled = true;
-      const resultado = new Resultado(new Ticket()).deserialize(res);
-      this.tickets = resultado.entidades;
-    });
+    if (this.cliente.cpfCnpj !== undefined) {
+      this.ticketService.consultarTodosTicketsCliente(this.cliente.cpfCnpj).subscribe( res => {
+        this.apiCalled = true;
+        const resultado = new Resultado(new Ticket()).deserialize(res);
+        this.tickets = resultado.entidades;
+      });
+    }
   }
 
   irParaDetalhe(idTicket) {

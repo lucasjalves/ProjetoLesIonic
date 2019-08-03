@@ -15,7 +15,8 @@
   <ion-grid *ngIf="apiCalled">
     <div class="status">
       <ion-icon name="{{mapIcones[ticket.status].icone}}" class="{{mapIcones[ticket.status].color}}"></ion-icon>
-      <span>ticket em {{ticket.status}}</span>
+      <span>Ticket {{ticket.status}}</span>
+      <p>Ticket solicitado em {{ticket.dtPedido}} às {{ticket.hora}}</p>
     </div>
       <h4>Itens do ticket</h4>
     <ion-row class="sombra-leve">

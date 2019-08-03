@@ -4,6 +4,7 @@ import { Cliente } from 'src/app/cliente/model/cliente.model';
 import { TicketService } from 'src/app/ticket/service/ticket-service.service';
 import { ClienteService } from 'src/app/cliente/service/cliente.service';
 import { Resultado } from 'src/app/common/resultado.model';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,13 +18,15 @@ export class TicketConsultaGestaoComponent implements OnInit {
   public cliente: Cliente = new Cliente();
   public apiCalled = false;
   constructor(private ticketService: TicketService,
-              private clienteService: ClienteService) { }
+              private clienteService: ClienteService,
+              private router: Router) { }
 
   ngOnInit() {
+    console.log('Recriando gestao...');
   }
 
   ionViewDidEnter() {
-    this.cliente = this.clienteService.getClienteLogado();
+
     this.ticketService.consultarTodos().subscribe( res => {
       this.apiCalled = true;
       const resultado = new Resultado(new Ticket()).deserialize(res);
@@ -31,4 +34,11 @@ export class TicketConsultaGestaoComponent implements OnInit {
     });
   }
 
+  irParaDetalhe(idTicket) {
+    this.router.navigate(['/ticket/detalhe'], {
+      queryParams: {
+        id: idTicket
+      }
+    });
+  }
 }

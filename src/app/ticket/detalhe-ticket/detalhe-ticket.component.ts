@@ -28,7 +28,7 @@ export class TicketDetalheComponent implements OnInit {
       icone: 'airplace',
       color: 'green'
     },
-    ENTREGUE: {
+    APROVADO: {
       icone: 'checkmark',
       color: 'green'
     },
@@ -63,7 +63,7 @@ export class TicketDetalheComponent implements OnInit {
   }
 
   async buscarPedido(ticket: Ticket) {
-    this.pedidoService.consultarById(ticket.id.toString()).subscribe( res => {
+    this.pedidoService.consultarById(ticket.idPedido.toString()).subscribe( res => {
       const resultado = new Resultado(this.pedido).deserialize(res);
       this.pedido = resultado.entidades[0];
       this.apiCalled = true;

@@ -76,7 +76,7 @@ export class AppComponent {
     },
     {
       title: 'Tickets',
-      url: '/gestao/pedidos',
+      url: '/gestao/tickets',
      icon: 'list-box'
     },
     {

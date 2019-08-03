@@ -20,7 +20,7 @@ export class TicketDetalheComponent implements OnInit {
       icone : 'alert',
       color: 'yellow'
     },
-    PAGO: {
+    APROVADO: {
       icone: 'clock',
       color: 'green'
     },
@@ -28,7 +28,7 @@ export class TicketDetalheComponent implements OnInit {
       icone: 'airplace',
       color: 'green'
     },
-    APROVADO: {
+    ENTREGUE: {
       icone: 'checkmark',
       color: 'green'
     },

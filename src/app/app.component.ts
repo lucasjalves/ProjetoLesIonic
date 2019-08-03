@@ -71,22 +71,22 @@ export class AppComponent {
   public appPagesAdmin = [
     {
       title: 'Pedidos',
-      url: 'gestao/pedidos',
+      url: '/gestao/pedidos',
       icon: 'clipboard'
     },
     {
       title: 'Tickets',
-      url: 'gestao/pedidos',
+      url: '/gestao/pedidos',
      icon: 'list-box'
     },
     {
       title: 'Produtos',
-      url: 'gestao/produtos',
+      url: '/gestao/produtos',
       icon: 'cube'
     },
     {
       title: 'Clientes',
-      url: 'gestao/clientes',
+      url: '/gestao/clientes',
       icon: 'cube'
     }
   ];

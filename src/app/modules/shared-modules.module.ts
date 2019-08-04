@@ -8,6 +8,7 @@ import { CarregandoComponent } from '../common/components/carregando/carregando.
 import { MatExpansionPanel, MatExpansionModule  } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PortalModule } from '@angular/cdk/portal';
+import { NgxCurrencyModule } from 'ngx-currency';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PortalModule } from '@angular/cdk/portal';
     CommonModule,
     IonicModule,
     PortalModule,
-    MatExpansionModule
+    MatExpansionModule,
+    NgxCurrencyModule
   ],
   exports: [
     CpfValidator,

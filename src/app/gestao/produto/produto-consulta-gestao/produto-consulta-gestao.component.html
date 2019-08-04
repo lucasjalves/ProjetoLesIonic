@@ -1,0 +1,35 @@
+<ion-header >
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="secondary">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title >
+      Todos produtos 
+    </ion-title>
+    <ion-buttons slot="primary">
+        <ion-button (click)="irParaCadastro()">
+            <ion-icon name="add"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <app-carregando [carregando]="!apiCalled" [qtdeLinhas]="3"></app-carregando>
+  <ion-grid *ngIf="apiCalled">
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+            <ion-list-header>
+                <ion-label>Todos produtos</ion-label>
+              </ion-list-header>
+              <ion-item *ngFor="let produto of produtos" (click)="irParaDetalhe(produto.id)"> 
+                <ion-label>#{{produto.id}}&nbsp;&nbsp; Estoque ({{produto.estoque}}x)&nbsp;&nbsp; ({{strings[produto.ativo]}})   </ion-label>
+              </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>
+<app-pagina-footer></app-pagina-footer>

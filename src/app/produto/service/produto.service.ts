@@ -8,12 +8,15 @@ export class ProdutoService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public buscarTodosProdutos() {
-    return this.httpClient.get(environment.urlBase + '/rest/produto/consulta/todos');
+  public buscarTodosProdutos(admin = false) {
+    return this.httpClient.get(`${environment.urlBase}/rest/produto/consulta/todos?admin=${admin}`);
   }
 
   public buscarPorId(id: string) {
-    console.log(id);
     return this.httpClient.get(`${environment.urlBase}/rest/produto/consulta/${id}`);
+  }
+
+  public buscarGategorias() {
+    return this.httpClient.get(`${environment.urlBase}/rest/produto/categorias`);
   }
 }

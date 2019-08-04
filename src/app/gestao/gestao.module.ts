@@ -7,6 +7,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { PedidoConsultaGestaoComponent } from './pedido-consulta-gestao/pedido-consulta-gestao.component';
 import { AdminGuard } from '../guards/admin.guard';
 import { TicketConsultaGestaoComponent } from './ticket-consulta/ticket-consulta.component';
+import { ProdutoConsultaGestaoComponent } from './produto/produto-consulta-gestao/produto-consulta-gestao.component';
+import {ProdutoCadastroGestaoComponent} from './produto/produto-cadastro-gestao/produto-cadastro-gestao.component';
 
 const routes: Routes = [
   {
@@ -17,6 +19,16 @@ const routes: Routes = [
   {
     path: 'tickets',
     component: TicketConsultaGestaoComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'produtos',
+    component: ProdutoConsultaGestaoComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'produtos/cadastro',
+    component: ProdutoCadastroGestaoComponent,
     canActivate: [AdminGuard]
   }
 ];
@@ -30,6 +42,7 @@ const routes: Routes = [
     SharedModules,
     RouterModule.forChild(routes)
   ],
-  declarations: [PedidoConsultaGestaoComponent, TicketConsultaGestaoComponent]
+  declarations: [PedidoConsultaGestaoComponent,
+    TicketConsultaGestaoComponent, ProdutoConsultaGestaoComponent]
 })
 export class GestaoModule { }

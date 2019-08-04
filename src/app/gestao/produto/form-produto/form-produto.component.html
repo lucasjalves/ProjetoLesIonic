@@ -1,0 +1,485 @@
+
+
+<form #f="ngForm">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="12" size-md="12">
+        <ion-item>
+          <ion-label
+            position="floating"
+            color="{{
+              !nome.valid && nome.touched
+                ? 'danger'
+                : nome.valid
+                ? 'success'
+                : ''
+            }}"
+            >Nome</ion-label
+          >
+          <ion-input
+            #nome="ngModel"
+            [(ngModel)]="produto.nome"
+            required
+            name="nome"
+          ></ion-input>
+          <ion-icon
+            *ngIf="nome.valid && nome.touched"
+            ios="ios-checkmark-circle"
+            md="md-checkmark-circle"
+            color="success"
+            style="margin-bottom: -10px;"
+            slot="end"
+          ></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-sm="12" size-md="12">
+        <ion-item>
+          <ion-label
+            position="floating"
+            color="{{
+              !descricao.valid && descricao.touched
+                ? 'danger'
+                : descricao.valid
+                ? 'success'
+                : ''
+            }}"
+            >Descrição</ion-label
+          >
+          <ion-input
+            #descricao="ngModel"
+            [(ngModel)]="produto.descricao"
+            required
+            name="descricao"
+          ></ion-input>
+          <ion-icon
+            *ngIf="descricao.valid && descricao.touched"
+            ios="ios-checkmark-circle"
+            md="md-checkmark-circle"
+            color="success"
+            style="margin-bottom: -10px;"
+            slot="end"
+          ></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row> 
+    <ion-row>
+      <ion-col size="12" size-sm="12" size-md="12">
+        <ion-item>
+          <ion-label
+            position="floating"
+            color="{{
+              !precoCompra.valid && precoCompra.touched
+                ? 'danger'
+                : precoCompra.valid
+                ? 'success'
+                : ''
+            }}"
+            >Preço de Compra</ion-label
+          >
+          <ion-input
+            #precoCompra="ngModel"
+            [(ngModel)]="produto.precoCompra"
+            required
+            name="precoCompra"
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          ></ion-input>
+          <ion-icon
+            *ngIf="precoCompra.valid && precoCompra.touched"
+            ios="ios-checkmark-circle"
+            md="md-checkmark-circle"
+            color="success"
+            style="margin-bottom: -10px;"
+            slot="end"
+          ></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-sm="12" size-md="12">
+        <ion-item>
+          <ion-label
+            position="floating"
+            color="{{
+              !precoVenda.valid && precoVenda.touched
+                ? 'danger'
+                : precoVenda.valid
+                ? 'success'
+                : ''
+            }}"
+            >Preço de Venda</ion-label
+          >
+          <ion-input
+            #precoVenda="ngModel"
+            [(ngModel)]="produto.precoVenda"
+            required
+            name="precoVenda"
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          ></ion-input>
+          <ion-icon
+            *ngIf="precoVenda.valid && precoVenda.touched"
+            ios="ios-checkmark-circle"
+            md="md-checkmark-circle"
+            color="success"
+            style="margin-bottom: -10px;"
+            slot="end"
+          ></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-sm="12" size-md="12">
+        <ion-item>
+          <ion-label
+            position="floating"
+            color="{{
+              !marca.valid && marca.touched
+                ? 'danger'
+                : marca.valid
+                ? 'success'
+                : ''
+            }}"
+            >Marca</ion-label
+          >
+          <ion-input
+            #marca="ngModel"
+            [(ngModel)]="produto.marca"
+            required
+            name="marca"
+          ></ion-input>
+          <ion-icon
+            *ngIf="marca.valid && marca.touched"
+            ios="ios-checkmark-circle"
+            md="md-checkmark-circle"
+            color="success"
+            style="margin-bottom: -10px;"
+            slot="end"
+          ></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-sm="12" size-md="12">
+        <ion-item>
+          <ion-label
+            position="floating"
+            color="{{
+              !modelo.valid && modelo.touched
+                ? 'danger'
+                : modelo.valid
+                ? 'success'
+                : ''
+            }}"
+            >Modelo</ion-label
+          >
+          <ion-input
+            #modelo="ngModel"
+            [(ngModel)]="produto.modelo"
+            required
+            name="modelo"
+          ></ion-input>
+          <ion-icon
+            *ngIf="modelo.valid && modelo.touched"
+            ios="ios-checkmark-circle"
+            md="md-checkmark-circle"
+            color="success"
+            style="margin-bottom: -10px;"
+            slot="end"
+          ></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-sm="12" size-md="12">
+        <ion-item>
+          <ion-label
+            position="floating"
+            color="{{
+              !altura.valid && altura.touched
+                ? 'danger'
+                : altura.valid
+                ? 'success'
+                : ''
+            }}"
+            >Altura</ion-label
+          >
+          <ion-input
+            #altura="ngModel"
+            [(ngModel)]="produto.altura"
+            required
+            name="altura"
+            pattern="^[0-9]*$"
+          ></ion-input>
+          <ion-icon
+            *ngIf="altura.valid && altura.touched"
+            ios="ios-checkmark-circle"
+            md="md-checkmark-circle"
+            color="success"
+            style="margin-bottom: -10px;"
+            slot="end"
+          ></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-sm="12" size-md="12">
+        <ion-item>
+          <ion-label
+            position="floating"
+            color="{{
+              !largura.valid && largura.touched
+                ? 'danger'
+                : largura.valid
+                ? 'success'
+                : ''
+            }}"
+            >Largura</ion-label
+          >
+          <ion-input
+            #largura="ngModel"
+            [(ngModel)]="produto.largura"
+            required
+            name="largura"
+            pattern="^[0-9]*$"
+          ></ion-input>
+          <ion-icon
+            *ngIf="largura.valid && largura.touched"
+            ios="ios-checkmark-circle"
+            md="md-checkmark-circle"
+            color="success"
+            style="margin-bottom: -10px;"
+            slot="end"
+          ></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-sm="12" size-md="12">
+        <ion-item>
+          <ion-label
+            position="floating"
+            color="{{
+              !comprimento.valid && comprimento.touched
+                ? 'danger'
+                : comprimento.valid
+                ? 'success'
+                : ''
+            }}"
+            >comprimento</ion-label
+          >
+          <ion-input
+            #comprimento="ngModel"
+            [(ngModel)]="produto.comprimento"
+            required
+            name="comprimento"
+            pattern="^[0-9]*$"
+          ></ion-input>
+          <ion-icon
+            *ngIf="comprimento.valid && comprimento.touched"
+            ios="ios-checkmark-circle"
+            md="md-checkmark-circle"
+            color="success"
+            style="margin-bottom: -10px;"
+            slot="end"
+          ></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-sm="12" size-md="12">
+        <ion-item>
+          <ion-label
+            position="floating"
+            color="{{
+              !peso.valid && peso.touched
+                ? 'danger'
+                : peso.valid
+                ? 'success'
+                : ''
+            }}"
+            >Peso</ion-label
+          >
+          <ion-input
+            #peso="ngModel"
+            [(ngModel)]="produto.peso"
+            required
+            name="peso"
+            pattern="^[0-9]*$"
+          ></ion-input>
+          <ion-icon
+            *ngIf="peso.valid && peso.touched"
+            ios="ios-checkmark-circle"
+            md="md-checkmark-circle"
+            color="success"
+            style="margin-bottom: -10px;"
+            slot="end"
+          ></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-sm="12" size-md="12">
+        <ion-item>
+          <ion-label
+            position="floating"
+            color="{{
+              !especificacoes.valid && especificacoes.touched
+                ? 'danger'
+                : especificacoes.valid
+                ? 'success'
+                : ''
+            }}"
+            >Escificações</ion-label
+          >
+          <ion-input
+            #especificacoes="ngModel"
+            [(ngModel)]="produto.especificacoes"
+            required
+            name="especificacoes"
+          ></ion-input>
+          <ion-icon
+            *ngIf="especificacoes.valid && especificacoes.touched"
+            ios="ios-checkmark-circle"
+            md="md-checkmark-circle"
+            color="success"
+            style="margin-bottom: -10px;"
+            slot="end"
+          ></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-sm="12" size-md="12">
+        <ion-item>
+          <ion-label
+            position="floating"
+            color="{{
+              !codigoBarras.valid && codigoBarras.touched
+                ? 'danger'
+                : codigoBarras.valid
+                ? 'success'
+                : ''
+            }}"
+            >Escificações</ion-label
+          >
+          <ion-input
+            #codigoBarras="ngModel"
+            [(ngModel)]="produto.codigoBarras"
+            required
+            name="codigoBarras"
+          ></ion-input>
+          <ion-icon
+            *ngIf="codigoBarras.valid && codigoBarras.touched"
+            ios="ios-checkmark-circle"
+            md="md-checkmark-circle"
+            color="success"
+            style="margin-bottom: -10px;"
+            slot="end"
+          ></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row style="margin-top: 20px;">
+      <ion-col size="12" size-sm="12" size-md="12">
+        <ion-item>
+          <ion-label
+            color="{{
+              !categoria.valid && categoria.touched
+                ? 'danger'
+                : categoria.valid
+                ? 'success'
+                : ''
+            }}"
+            >Categoria</ion-label
+          >
+          <ion-select
+            name="categoria"
+            #categoria="ngModel"
+            required
+            [(ngModel)]="produto.categoria"
+            placeholder="Selecione..."
+          >
+            <ion-select-option *ngFor="let c of categorias" value="{{c}}">{{c}}</ion-select-option>
+          </ion-select>
+          <ion-icon
+            *ngIf="categoria.valid && categoria.touched"
+            ios="ios-checkmark-circle"
+            md="md-checkmark-circle"
+            color="success"
+            slot="end"
+          ></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-sm="12" size-md="12">
+        <ion-item>
+          <ion-label
+            position="floating"
+            color="{{
+              !estoque.valid && estoque.touched
+                ? 'danger'
+                : estoque.valid
+                ? 'success'
+                : ''
+            }}"
+            >estoque</ion-label
+          >
+          <ion-input
+            #estoque="ngModel"
+            [(ngModel)]="produto.estoque"
+            required
+            name="estoque"
+            pattern="^[0-9]*$"
+          ></ion-input>
+          <ion-icon
+            *ngIf="estoque.valid && estoque.touched"
+            ios="ios-checkmark-circle"
+            md="md-checkmark-circle"
+            color="success"
+            style="margin-bottom: -10px;"
+            slot="end"
+          ></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row> 
+    <ion-row>
+      <ion-col size="12" size-sm="12" size-md="12">
+        <ion-item>
+          <ion-label
+            position="floating"
+            color="{{
+              !conteudoEmbalagem.valid && conteudoEmbalagem.touched
+                ? 'danger'
+                : conteudoEmbalagem.valid
+                ? 'success'
+                : ''
+            }}"
+            >Conteudo Embalagem</ion-label
+          >
+          <ion-input
+            #conteudoEmbalagem="ngModel"
+            [(ngModel)]="produto.conteudoEmbalagem"
+            required
+            name="conteudoEmbalagem"
+          ></ion-input>
+          <ion-icon
+            *ngIf="conteudoEmbalagem.valid && conteudoEmbalagem.touched"
+            ios="ios-checkmark-circle"
+            md="md-checkmark-circle"
+            color="success"
+            style="margin-bottom: -10px;"
+            slot="end"
+          ></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>  
+    <ion-row>
+      <ion-col size="12" size-md="12" size-sm="12">
+          <ion-button expand="block" (click)="funcao()" color="tertiary" disabled='{{!f.valid}}'>{{tituloBotao}}</ion-button>
+      </ion-col>
+    </ion-row>                                                                           
+  </ion-grid>
+</form>
+

@@ -87,7 +87,7 @@ export class AppComponent {
     {
       title: 'Clientes',
       url: '/gestao/clientes',
-      icon: 'cube'
+      icon: 'contacts'
     }
   ];
 
@@ -120,7 +120,6 @@ export class AppComponent {
 
   inscrever() {
     this.statusClienteService.isActive.subscribe(status => {
-      console.log(status);
       this.isActive = status as boolean;
     });
 

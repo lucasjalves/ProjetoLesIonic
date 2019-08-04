@@ -25,4 +25,8 @@ export class TicketService {
   consultarTodos() {
     return this.httpClient.get(`${environment.urlBase}/rest/ticket/todos`);
   }
+
+  aprovarTicket(id, status: string, idCliente: any) {
+    return this.httpClient.post(`${environment.urlBase}/rest/ticket/aprovar/${id}?status=${status}&idCliente=${idCliente}`, {});
+  }
 }

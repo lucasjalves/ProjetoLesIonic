@@ -6,6 +6,8 @@ import { Resultado } from 'src/app/common/resultado.model';
 import { Pedido } from 'src/app/pedido/model/pedido.model';
 import { PedidoService } from 'src/app/pedido/service/pedido.service';
 import { ItemPedidoTiket } from '../model/item-pedido-ticket.model';
+import { LoadingController, AlertController, ModalController } from '@ionic/angular';
+import { ModalHelper } from 'src/app/common/modal.helper';
 
 @Component({
   selector: 'app-detalhe-ticket',
@@ -45,15 +47,20 @@ export class TicketDetalheComponent implements OnInit {
   public apiCalled = false;
   public ticket = new Ticket();
   public pedido = new Pedido();
+  public admin = false;
   constructor(private ticketService: TicketService,
               private activatedRoute: ActivatedRoute,
               private pedidoService: PedidoService,
-              private router: Router) { }
+              private router: Router,
+              private loadingController: LoadingController,
+              private alertController: AlertController,
+              private modalHelper: ModalHelper) { }
 
   ngOnInit() {}
 
   ionViewDidEnter() {
     this.activatedRoute.queryParams.subscribe(params => {
+      this.admin = params.admin as boolean;
       this.ticketService.buscarPorId(params.id).subscribe(res => {
         const resultado = new Resultado(this.ticket).deserialize(res);
         this.ticket = resultado.entidades[0];
@@ -91,5 +98,26 @@ export class TicketDetalheComponent implements OnInit {
 
   irParaProduto() {
 
+  }
+
+  async aprovarTicket(status: string) {
+    const loading = await this.loadingController.create({
+      message: 'Carregando...'
+    });
+
+    loading.present();
+
+    this.ticketService.aprovarTicket(this.ticket.id, status, this.ticket.idCliente).subscribe( res => {
+      const resultado =  new Resultado(this.ticket).deserialize(res);
+      loading.dismiss();
+      if (resultado.mensagens.length > 0) {
+        this.modalHelper.mostrarModal(this.alertController, '', '', resultado).then(modal => modal.present());
+      } else {
+        this.ticket = resultado.entidades[0];
+      }
+    }, err => {
+      loading.dismiss();
+      this.modalHelper.mostrarModal(this.alertController).then(modal => modal.present());
+    });
   }
 }

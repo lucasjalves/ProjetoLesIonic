@@ -39,5 +39,8 @@
       </ion-row>
   
   </ion-grid>
+  <ion-button *ngIf="ticket.status === 'SOLICITADO' && admin" expand="full" (click)="aprovarTicket('APROVADO')">Aprovar</ion-button>
+  <ion-button *ngIf="ticket.status === 'APROVADO' && admin && ticket.tipo === 'TROCA'" expand="full" (click)="aprovarTicket('TRANSPORTE')">Enviar</ion-button>
+  <ion-button *ngIf="ticket.status === 'TRANSPORTE' && admin && ticket.tipo === 'TROCA'" expand="full" (click)="aprovarTicket('ENTREGUE')">Entregue</ion-button>
 </ion-content>
 <app-pagina-footer></app-pagina-footer>

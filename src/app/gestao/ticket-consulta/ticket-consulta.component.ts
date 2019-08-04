@@ -37,7 +37,8 @@ export class TicketConsultaGestaoComponent implements OnInit {
   irParaDetalhe(idTicket) {
     this.router.navigate(['/ticket/detalhe'], {
       queryParams: {
-        id: idTicket
+        id: idTicket,
+        admin: true
       }
     });
   }

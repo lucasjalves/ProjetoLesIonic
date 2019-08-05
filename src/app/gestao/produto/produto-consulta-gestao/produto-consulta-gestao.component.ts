@@ -31,4 +31,8 @@ export class ProdutoConsultaGestaoComponent implements OnInit {
       this.apiCalled = true;
     });
   }
+
+  irParaCadastro() {
+    this.router.navigateByUrl('/gestao/produtos/cadastro');
+  }
 }

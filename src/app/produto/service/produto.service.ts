@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { Produto } from '../model/produto.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,5 +19,9 @@ export class ProdutoService {
 
   public buscarGategorias() {
     return this.httpClient.get(`${environment.urlBase}/rest/produto/categorias`);
+  }
+
+  public salvarProduto(produto: Produto) {
+    return this.httpClient.post(`${environment.urlBase}/rest/produto/salvar`, produto);
   }
 }

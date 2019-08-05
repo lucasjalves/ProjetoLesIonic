@@ -9,6 +9,7 @@ import { AdminGuard } from '../guards/admin.guard';
 import { TicketConsultaGestaoComponent } from './ticket-consulta/ticket-consulta.component';
 import { ProdutoConsultaGestaoComponent } from './produto/produto-consulta-gestao/produto-consulta-gestao.component';
 import {ProdutoCadastroGestaoComponent} from './produto/produto-cadastro-gestao/produto-cadastro-gestao.component';
+import { FormProdutoComponent } from './produto/form-produto/form-produto.component';
 
 const routes: Routes = [
   {
@@ -42,7 +43,7 @@ const routes: Routes = [
     SharedModules,
     RouterModule.forChild(routes)
   ],
-  declarations: [PedidoConsultaGestaoComponent,
-    TicketConsultaGestaoComponent, ProdutoConsultaGestaoComponent]
+  declarations: [PedidoConsultaGestaoComponent, TicketConsultaGestaoComponent,
+     ProdutoConsultaGestaoComponent, ProdutoCadastroGestaoComponent, FormProdutoComponent]
 })
 export class GestaoModule { }

@@ -1,3 +1,17 @@
-<p>
-  produto-cadastro-gestao works!
-</p>
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Cadastre um novo produto
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<app-form-produto [produto]="produto" [tituloBotao]="'Cadastrar'" [funcao]="funcao" [cadastro]="false"></app-form-produto>
+
+</ion-content>
+<app-pagina-footer></app-pagina-footer>

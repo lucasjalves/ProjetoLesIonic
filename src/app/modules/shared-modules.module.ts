@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { CpfValidator } from '../directives/cpf.validator';
 import { MaskDirective } from '../directives/mask.directive';
 import { PaginaFooterComponent } from '../common/components/pagina-footer/pagina-footer.component';
@@ -29,7 +29,11 @@ import { NgxCurrencyModule } from 'ngx-currency';
     MaskDirective,
     PaginaFooterComponent,
     CarregandoComponent,
-    MatExpansionModule
+    MatExpansionModule,
+    NgxCurrencyModule
+  ],
+  providers: [
+    CurrencyPipe
   ]
 })
 export class SharedModules { }

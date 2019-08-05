@@ -83,7 +83,8 @@
             [(ngModel)]="produto.precoCompra"
             required
             name="precoCompra"
-            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+            inputmode="numeric"
+            (ionBlur)="convert($event, '')"
           ></ion-input>
           <ion-icon
             *ngIf="precoCompra.valid && precoCompra.touched"
@@ -115,7 +116,8 @@
             [(ngModel)]="produto.precoVenda"
             required
             name="precoVenda"
-            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+            inputmode="numeric"
+            (ionBlur)="convert($event)"
           ></ion-input>
           <ion-icon
             *ngIf="precoVenda.valid && precoVenda.touched"
@@ -266,7 +268,7 @@
                 ? 'success'
                 : ''
             }}"
-            >comprimento</ion-label
+            >Comprimento</ion-label
           >
           <ion-input
             #comprimento="ngModel"
@@ -292,45 +294,13 @@
           <ion-label
             position="floating"
             color="{{
-              !peso.valid && peso.touched
-                ? 'danger'
-                : peso.valid
-                ? 'success'
-                : ''
-            }}"
-            >Peso</ion-label
-          >
-          <ion-input
-            #peso="ngModel"
-            [(ngModel)]="produto.peso"
-            required
-            name="peso"
-            pattern="^[0-9]*$"
-          ></ion-input>
-          <ion-icon
-            *ngIf="peso.valid && peso.touched"
-            ios="ios-checkmark-circle"
-            md="md-checkmark-circle"
-            color="success"
-            style="margin-bottom: -10px;"
-            slot="end"
-          ></ion-icon>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="12" size-sm="12" size-md="12">
-        <ion-item>
-          <ion-label
-            position="floating"
-            color="{{
               !especificacoes.valid && especificacoes.touched
                 ? 'danger'
                 : especificacoes.valid
                 ? 'success'
                 : ''
             }}"
-            >Escificações</ion-label
+            >Especificações</ion-label
           >
           <ion-input
             #especificacoes="ngModel"
@@ -361,7 +331,7 @@
                 ? 'success'
                 : ''
             }}"
-            >Escificações</ion-label
+            >Código Barras</ion-label
           >
           <ion-input
             #codigoBarras="ngModel"
@@ -424,7 +394,7 @@
                 ? 'success'
                 : ''
             }}"
-            >estoque</ion-label
+            >Estoque</ion-label
           >
           <ion-input
             #estoque="ngModel"
@@ -482,4 +452,5 @@
     </ion-row>                                                                           
   </ion-grid>
 </form>
+
 
